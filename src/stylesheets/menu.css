@@ -1,0 +1,16 @@
+.menuContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    gap: 20px;
+}
+.menuDomain {
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    margin-bottom: 50px;
+    hr {
+        margin-top: 20px;
+    }
+}

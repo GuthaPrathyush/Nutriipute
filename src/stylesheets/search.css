@@ -1,0 +1,33 @@
+.Search {
+    .container {
+        min-height: calc(100vh - 69px);
+    }
+    .searchedProducts {
+        min-height: calc(100vh - 169px);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .noProducts {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        div {
+            padding: 10px 0px;
+            width: 250px;
+            text-align: center;
+            border-radius: 50px;
+            background-color: hsl(102, 41%, 54%);
+            color: black;
+            cursor: pointer;
+            p {
+                color: white;
+            }
+        }
+        div:active {
+            background-color: hsl(102, 41%, 44%);
+        }
+        flex-grow: 1;
+    }
+}

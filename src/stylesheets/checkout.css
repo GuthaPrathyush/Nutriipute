@@ -1,0 +1,84 @@
+.Checkout {
+    min-height: calc(100vh - 69px);
+    > .container {
+        > .addAddressOuter {
+            padding: 20px;
+            border: 1px groove black;
+            border-radius: 12px;
+            background-color: #E0FBE2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .addAddressReq {
+                margin-bottom: 75px;
+                color:black;
+            }
+            > .heading {
+                margin-bottom: 20px;
+                align-self: flex-start;
+            }
+            > .addressContainer {
+                display: grid;
+                column-gap: 40px;
+                row-gap: 20px;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                width: 100%;
+                .Address {
+                    display: flex;
+                    flex-direction: column;
+                    background-color: rgb(234, 234, 234);
+                    border-radius: 12px;
+                    height: 225px;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                    border: 1.5px solid white;
+                    > h4 {
+                        margin-bottom: 5px;
+                    }
+                    .num {
+                        margin-bottom: 10px;
+                    }
+                    .add {
+                        flex-basis: 40%;
+                        overflow: auto;
+                        scrollbar-width: thin;
+                    }
+                    .editAdd {
+                        height: 30px;
+                        margin-bottom: 5px;
+                        background-color: rgb(98, 98, 98);
+                        color: white;
+                        border: none;
+                        cursor: pointer;
+                    }
+                    .delAdd {
+                        height: 30px;
+                        background-color: #fff;
+                        border: none;
+                        cursor: pointer;
+                    }
+                }
+                .Address.selected {
+                    border: 1.5px solid black;
+                }
+                input[type='radio'] {
+                    display: none;
+                }
+                margin-bottom: 50px;
+            }
+            > a {
+                width: 150px;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: hsl(102, 34%, 42%);
+                color: white;
+                font-size: 1.2rem;
+            }
+            > a:active {
+                background-color: hsl(102, 34%, 52%);
+            }
+        }
+    }
+}

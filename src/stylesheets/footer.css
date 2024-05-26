@@ -1,0 +1,115 @@
+.Footer {
+    width: 100%;
+    padding-bottom: 10px;
+    background-color: lightcyan;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+        width: 225px;
+    }
+    hr {
+        width: 90%;
+        color: rgb(158, 158, 158);
+        margin-bottom: 30px;
+    }
+    .signInDialogue {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        button{
+            cursor: pointer;
+            border: none;
+            width: 150px;
+            height: 25px;
+            font-size: 14px;
+            background-color: hsl(150, 69%, 69%);
+            margin-bottom: 2px;
+        }
+        button:active {
+            background-color: hsl(150, 69%, 59%);
+        }
+        a {
+            color: blue;
+            text-decoration: underline;
+        }
+        > p {
+            font-size: 12px;
+        }
+        margin-bottom: 30px;
+    }
+    .footerMenu {
+        width: 25%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-bottom: 30px;
+    }
+    .followUs {
+        h3 {
+            margin-bottom: 5px;
+        }
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .socialMediaContainer {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            i {
+                font-size: 1.2rem;
+                cursor: pointer;
+            }
+        }
+        margin-bottom: 20px;
+    }
+    >p {
+        font-size: 0.85rem;
+    }
+}
+
+@media screen and (max-width: 972px) {
+    .Footer{
+        .footerMenu {
+            width: 30%;
+        }
+        .followUs {
+            width: 60%;
+        }
+    }
+}
+@media screen and (max-width: 705px) {
+    .Footer{
+        .footerMenu {
+            width: 40%;
+        }
+        .followUs {
+            width: 75%;
+        }
+    }
+}
+@media screen and (max-width: 544px) {
+    .Footer{
+        .footerMenu {
+            width: 50%;
+        }
+        .followUs {
+            width: 100%;
+        }
+    }
+}
+@media screen and (max-width: 419px) {
+    .Footer{
+        .footerMenu {
+            width: 75%;
+        }
+        .followUs {
+            .socialMediaContainer {
+                width: 40%;
+            }
+        }
+    }
+}

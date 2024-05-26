@@ -1,0 +1,146 @@
+.cartItemContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .cartHeading {
+        margin-bottom: 35px;
+    }
+}
+
+.cartItem {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(239, 239, 239);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    position: relative;
+    img {
+        height: 190px;
+        border-radius: 10px;
+        aspect-ratio: 3/2;
+        object-fit: cover;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+    >i {
+        position: absolute;
+        right: 1%;
+        top: 5%;
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+    .itemDetails {
+        height: 190px;
+        align-self: flex-start;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        h2 {
+            margin-bottom: 15px;
+        }
+        p {
+            flex-basis: 65%;
+        }
+    }
+}
+
+.shopNow {
+    width: 100%;
+    height: calc(100vh - 169px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.shopNowDialogue {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: hsl(102, 41%, 54%);
+    color: white;
+}
+.shopNowDialogue:active {
+    background-color: hsl(102, 41%, 44%);
+}
+
+.quantityContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    i {
+        font-size: 0.8rem;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    div {
+        height: 15px;
+        font-size: 14px;
+        display: flex;
+        padding: 0 2px;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border: 1px solid black;
+        margin-right: 10px;
+    }
+    .subTotalForOneItem {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        background-color: transparent;
+        border: none;
+        font-size: 1rem;
+        font-weight: 800;
+    }
+}
+
+.subtotalPrice {
+    margin-top: 30px;
+    width: 50%;
+    background-color: rgb(239, 239, 239);
+    border-radius: 10px;
+    padding: 20px 20px;
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        font-weight: 800;
+    }
+    hr {
+        margin-bottom: 10px;
+    }
+    .checkOutContainer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        button {
+            width: 150px;
+            height: 35px;
+            color: white;
+            border: none;
+            background-color: hsl(102, 41%, 54%);
+            cursor: pointer;
+        }
+        button:active {
+            background-color: hsl(120, 41%, 44%);
+        }
+    }
+}
+
+.totalContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -10,7 +10,7 @@ const ProtienStarters = [
         Description: "something delicious",
         Macro: {
             calories: 10,
-            protien: 40
+            proteins: 40
         },
         Veg: false,
         InStock: true,
@@ -24,7 +24,7 @@ const ProtienStarters = [
         Description: "something delicious",
         Macro: {
             calories: 10,
-            protien: 40
+            proteins: 40
         },
         Veg: false,
         InStock: true,

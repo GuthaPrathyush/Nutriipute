@@ -13,7 +13,7 @@ const Salads = [
         Description: "something delicious",
         Macro: {
             calories: 10,
-            protien: 40
+            proteins: 40
         },
         Veg: false,
         InStock: true,
@@ -27,7 +27,7 @@ const Salads = [
         Description: "something delicious",
         Macro: {
             calories: 10,
-            protien: 40
+            proteins: 40
         },
         Veg: false,
         InStock: true,
@@ -41,7 +41,7 @@ const Salads = [
         Description: "something delicious",
         Macro: {
             calories: 10,
-            protien: 40
+            proteins: 40
         },
         Veg: true,
         InStock: true,
@@ -55,7 +55,7 @@ const Salads = [
         Description: "something delicious",
         Macro: {
             calories: 10,
-            protien: 40
+            proteins: 40
         },
         Veg: true,
         InStock: true,
@@ -69,7 +69,7 @@ const Salads = [
         Description: "something delicious",
         Macro: {
             calories: 10,
-            protien: 40
+            proteins: 40
         },
         Veg: true,
         InStock: true,

@@ -11,7 +11,7 @@ const Breakfast = [
         Description: "Start your day right with our wholesome oatmeal, a breakfast classic packed with nourishing goodness. Made from the finest quality rolled oats, our oatmeal is a hearty and satisfying option for those seeking a nutritious morning meal. Each bowl is a comforting blend of tender oats cooked to perfection, served piping hot and ready to fuel your day.",
         Macro: {
             calories: 10,
-            protien: 40
+            proteins: 40
         },
         Veg: true,
         InStock: true,
@@ -25,7 +25,7 @@ const Breakfast = [
         Description: "Made up of Eggs and Bread fried on pan using delicious ghee",
         Macro: {
             calories: 10,
-            protien: 40
+            proteins: 40
         },
         Veg: false,
         InStock: false,
@@ -39,7 +39,7 @@ const Breakfast = [
         Description: "something delicious",
         Macro: {
             Calories: 10,
-            Protien: 40
+            proteins: 40
         },
         Veg: true,
         InStock: true,

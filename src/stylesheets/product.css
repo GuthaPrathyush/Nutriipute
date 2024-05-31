@@ -44,9 +44,12 @@
         }
         .outOfStock {
             margin-top: 20px;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 20px;
             p {
                 color: red;
                 margin-bottom: 20px;

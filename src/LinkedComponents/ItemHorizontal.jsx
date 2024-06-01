@@ -2,6 +2,7 @@ import '../stylesheets/itemHorizontal.css';
 import {Link} from 'react-router-dom';
 import { WebsiteContext } from '../Contexts/WebsiteContext';
 import { useContext } from 'react';
+import {toast} from 'react-hot-toast';
 
 function ItemHorizontal(props) {
     const item = props.items;
@@ -31,7 +32,7 @@ function ItemHorizontal(props) {
                     {(() => {
                         if(item.InStock) {
                             return (
-                                <button type='button' onClick={(e) => {e.preventDefault();addToCart(item.Name)}}>Add to Cart</button>
+                                <button type='button' onClick={(e) => {e.preventDefault();addToCart(item.Name);toast.success("Added to Cart!", {position: "top-right", style: {position: "relative", top: "70px", right: "5px"}})}}>Add to Cart</button>
                             );
                         }
                         else {

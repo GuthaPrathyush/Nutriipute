@@ -6,6 +6,7 @@ import BrownRiceBowls from '../assets/BrownRiceBowls';
 import ProtienStarters from '../assets/ProtienStarters';
 import '../stylesheets/product.css';
 import { WebsiteContext } from '../Contexts/WebsiteContext';
+import {toast} from 'react-hot-toast';
 
 const menu = [Breakfast, Salads, BrownRiceBowls, ProtienStarters];
 
@@ -52,7 +53,7 @@ function Product(props) {
                             if(product.InStock) {
                                 return (
                                     <div className='BuyAddToCartContainer'>
-                                    <button className="AddToCart" onClick={() => addToCart(product.Name)}>Add to Cart</button>
+                                    <button className="AddToCart" onClick={() => {addToCart(product.Name); toast.success("Added to Cart!", {position: "top-right", style: {position: "relative", top: "70px", right: "5px"}})}}>Add to Cart</button>
                                     <button className="Buy">Buy Now</button>
                                     </div>
                                 );

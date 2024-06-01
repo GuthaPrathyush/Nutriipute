@@ -3,6 +3,7 @@ import '../stylesheets/login.css'
 import { Link } from 'react-router-dom';
 import Logo from '../assets/Logo.png';
 import axios from 'axios';
+import {toast} from 'react-hot-toast';
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -24,7 +25,6 @@ function Login() {
             passwordInput.current.setAttribute("type", "password");
         }
     }
-    const registrationErrorMessage = useRef();
     const Login = async () => {
         setEmail(String(email).toLowerCase());
         let responseData;
@@ -36,14 +36,12 @@ function Login() {
         }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
         console.log(responseData);
         if(responseData.success) {
-            registrationErrorMessage.current.style.color = "green";
-            registrationErrorMessage.current.textContent = 'Login Successful!';
+            toast.success("Login Successful!");
             localStorage.setItem('auth-token', responseData.token);
             setTimeout(() => window.location.replace('/'), 2000);
         }
         else {
-            registrationErrorMessage.current.style.color = "red";
-            registrationErrorMessage.current.textContent = responseData.errors;
+            toast.error(`${responseData.errors}`);
         }
     }
     if(localStorage.getItem('auth-token')) {
@@ -65,7 +63,6 @@ function Login() {
                                 <i ref={hidePasswordRef} className="fa-regular fa-eye-slash"></i>
                             </div>
                         </div>
-                        <div className="registrationErrorMessage" ref={registrationErrorMessage}></div>
                         <button onClick={Login}>Login</button>
                         <p>New customer? <Link to="/Register" onClick={() => window.scrollTo(0, 69)}>Register</Link></p>
                     </div>

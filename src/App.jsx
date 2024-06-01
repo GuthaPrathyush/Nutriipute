@@ -17,10 +17,11 @@ import Profile from "./LinkedComponents/Profile.jsx";
 import Checkout from "./LinkedComponents/Checkout.jsx";
 import AddAddress from "./LinkedComponents/AddAddress.jsx";
 import EditAddress from './LinkedComponents/EditAddress.jsx';
+import {Toaster} from 'react-hot-toast';
 function App() {
-
     return (
         <>
+            <Toaster position="bottom-center"/>
             <BrowserRouter>
             <NavigationBar/>
             <Routes>

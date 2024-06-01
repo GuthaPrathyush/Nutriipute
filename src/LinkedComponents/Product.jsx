@@ -41,30 +41,32 @@ function Product(props) {
                         <h3>Macro</h3>
                         <ul>
                             {Object.entries(product.Macro).map(([key, value]) => 
-                                value ? <li key={key}>{key.charAt(0).toUpperCase() + key.slice(1)}: {value}gms</li> : null
+                                <li key={key}>{key.charAt(0).toUpperCase() + key.slice(1)}: {value}gms</li>
                             )}
                         </ul>
 
                     </div>
-                    {product.InStock && getPrice()}
-                    {(() => {
-                        if(product.InStock) {
-                            return (
-                                <div className='BuyAddToCartContainer'>
-                                <button className="AddToCart" onClick={() => addToCart(product.Name)}>Add to Cart</button>
-                                <button className="Buy">Buy Now</button>
-                                </div>
-                            );
-                        }
-                        else {
-                            return (
-                                <div className="outOfStock">
-                                    <p>This Product is Currently Unavailable!</p>
-                                    <Link to='/menu' onClick={() => scrollTo(0, 0)}><button>View more</button></Link>
-                                </div>
-                            );
-                        }
-                    })()}
+                    <div className="pricingAndBuying">
+                        {product.InStock && getPrice()}
+                        {(() => {
+                            if(product.InStock) {
+                                return (
+                                    <div className='BuyAddToCartContainer'>
+                                    <button className="AddToCart" onClick={() => addToCart(product.Name)}>Add to Cart</button>
+                                    <button className="Buy">Buy Now</button>
+                                    </div>
+                                );
+                            }
+                            else {
+                                return (
+                                    <div className="outOfStock">
+                                        <p>This Product is Currently Unavailable!</p>
+                                        <Link to='/menu' onClick={() => scrollTo(0, 0)}><button>View more</button></Link>
+                                    </div>
+                                );
+                            }
+                        })()}
+                    </div>
                 </div>
             </div>
         </div>

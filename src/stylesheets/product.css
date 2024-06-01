@@ -18,11 +18,59 @@
             p {
                 margin-bottom: 20px;
             }
-            > h3 {
-                del {
-                    color: gray;
+            .pricingAndBuying {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+                > h3 {
+                    margin-right: 20px;
+                    del {
+                        color: gray;
+                    }
+                    margin-bottom: 20px;
                 }
-                margin-bottom: 20px;
+                .outOfStock {
+                    margin-top: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-end;
+                    margin-bottom: 20px;
+                    p {
+                        color: red;
+                        margin-bottom: 20px;
+                    }
+                    button {
+                        width: 200px;
+                        height: 35px;
+                        border: none;
+                        background-color: rgb(229, 229, 229);
+                        font-size: 16px;
+                        cursor: pointer;
+                    }
+                }
+                .BuyAddToCartContainer {
+                    padding: 0 10%;
+                    width: 100%;
+                    display: flex;
+                    align-items: flex-end;
+                    margin-bottom: 10px;
+                    justify-content: space-between;
+                    button {
+                        border: none;
+                        text-align: center;
+                        width: 100px;
+                        height: 30px;
+                        font-size: 1rem;
+                        cursor: pointer;
+                        background-color: hsl(102, 41%, 54%);
+                        color: white;
+                    }
+                    button:active {
+                        background-color: hsl(102, 41%, 44%);
+                    }
+                }
             }
             .Macro {
                 h3 {
@@ -42,49 +90,5 @@
             top: calc((100vh - (((100vw - (100vw - 100%)) - 150px) / 3)) / 4);
             align-self: flex-start;
         }
-        .outOfStock {
-            margin-top: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            margin-bottom: 20px;
-            p {
-                color: red;
-                margin-bottom: 20px;
-            }
-            button {
-                width: 200px;
-                height: 35px;
-                border: none;
-                background-color: rgb(229, 229, 229);
-                font-size: 16px;
-                cursor: pointer;
-            }
-        }
-    }
-}
-
-.BuyAddToCartContainer {
-    padding: 0 10%;
-    flex-grow: 1;
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 10px;
-    justify-content: space-between;
-    button {
-        border: none;
-        text-align: center;
-        width: 100px;
-        height: 30px;
-        font-size: 1rem;
-        cursor: pointer;
-        background-color: hsl(102, 41%, 54%);
-        color: white;
-    }
-    button:active {
-        background-color: hsl(102, 41%, 44%);
     }
 }

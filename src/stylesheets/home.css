@@ -90,3 +90,14 @@
         margin-bottom: 20px;
     }
 }
+
+@media screen and (max-width: 561px) {
+    .Home {
+        .container {
+                .heading {
+                    font-size: 28px;
+                    font-weight: bold;
+                }
+        }
+    }
+}

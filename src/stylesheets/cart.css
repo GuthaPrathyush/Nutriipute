@@ -44,6 +44,8 @@
         }
         p {
             flex-basis: 65%;
+            overflow: auto;
+            padding-bottom: 10px;
         }
     }
 }

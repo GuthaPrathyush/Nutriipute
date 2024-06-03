@@ -7,6 +7,8 @@ import 'react-phone-number-input/style.css'
 import { useRef, useState, useContext } from 'react';
 import { WebsiteContext } from '../Contexts/WebsiteContext';
 
+axios.defaults.withCredentials = true;
+
 function AddAddress() {
     const [form, setForm] = useState({
         Name: "",

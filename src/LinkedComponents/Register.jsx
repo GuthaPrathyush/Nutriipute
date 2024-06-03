@@ -4,6 +4,7 @@ import Logo from '../assets/Logo.png';
 import { useRef, useState } from "react";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
 
 function Register() {
     const [hidden, setHidden] = useState(true);

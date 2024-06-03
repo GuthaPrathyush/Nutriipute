@@ -6,6 +6,7 @@ import ProtienStarters from '../assets/ProtienStarters';
 import axios from 'axios';
 
 export const WebsiteContext = createContext(null);
+axios.defaults.withCredentials = true;
 
 async function getDefaultCart() {
     if(!localStorage.getItem('auth-token')) {

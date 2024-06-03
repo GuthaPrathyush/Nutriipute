@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 function Checkout() {
     const { address, setIndexToModify } = useContext(WebsiteContext);
     const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);

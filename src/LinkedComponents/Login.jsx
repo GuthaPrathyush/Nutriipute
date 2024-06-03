@@ -28,7 +28,7 @@ function Login() {
     const Login = async () => {
         setEmail(String(email).toLowerCase());
         let responseData;
-        await axios.post('http://localhost:5000/login',JSON.stringify({Email: email, Password: password}), {
+        await axios.post('https://nutriipute-backend.vercel.app/login',JSON.stringify({Email: email, Password: password}), {
             headers: {
                 Accept: 'application/form-data',
                 'Content-Type': 'application/json'

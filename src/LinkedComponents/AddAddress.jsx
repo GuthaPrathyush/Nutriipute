@@ -53,7 +53,7 @@ function AddAddress() {
         }
         else {
             let responseData;
-            await axios.post('http://localhost:5000/addAddress',JSON.stringify(form), {
+            await axios.post('https://nutriipute-backend.vercel.app/addAddress',JSON.stringify(form), {
                 headers: {
                     Accept: 'application/form-data',
                     'Content-Type': 'application/json',

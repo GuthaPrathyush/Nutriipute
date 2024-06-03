@@ -17,7 +17,7 @@ function Checkout() {
 
     const handleDelClick = async (index) => {
         let responseData;
-        await axios.post('http://localhost:5000/delAddress', JSON.stringify({index: index}), {
+        await axios.post('https://nutriipute-backend.vercel.app/delAddress', JSON.stringify({index: index}), {
             headers: {
                 Accept: 'application/form-data',
                 'Content-Type': 'application/json',

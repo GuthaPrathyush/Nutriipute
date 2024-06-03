@@ -79,7 +79,7 @@ function Register() {
         }
         else {
             let responseData;
-            await axios.post('http://localhost:5000/register',JSON.stringify(form), {
+            await axios.post('https://nutriipute-backend.vercel.app/register',JSON.stringify(form), {
                 headers: {
                     Accept: 'application/form-data',
                     'Content-Type': 'application/json'

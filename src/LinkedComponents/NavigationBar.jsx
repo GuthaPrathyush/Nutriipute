@@ -61,11 +61,8 @@ function NavigationBar() {
                 <li className='userProfile' onClick={() => profileOptions.current.classList.toggle('active')}>
                     <div className='profileImage'><i className="fa-solid fa-user"></i></div>
                     <div className="profileOptions" ref={profileOptions}>
-                        <p>check</p>
-                        <ul>
-                            <li>View Profile</li>
-                            <li onClick={logout}>Logout</li>
-                        </ul>
+                        <p>View Profile</p>
+                        <p onClick={logout}>Logout</p>
                     </div>
                 </li>:
                 <li className="loginRegister"><Link to='/Login' onClick={() => {window.scrollTo(0, 0); menuRef.current.classList.remove("activeMenu");}}>

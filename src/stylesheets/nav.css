@@ -93,17 +93,11 @@ nav {
                 top: 45px;
                 left: 0;
                 z-index: 3;
-                ul {
-                    z-index: 3;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    li {
-                        padding: 5px;
-                        width: 100%;
-                        text-align: center;
-                        border-bottom: 1px solid black;
-                    }
+                text-align: center;
+                p {
+                    padding: 5px;
+                    width: 100%;
+                    border-bottom: 1px solid black;
                 }
             }
             .profileOptions.active {

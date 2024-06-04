@@ -108,6 +108,9 @@ nav {
             .profileOptions.active {
                 z-index: 3;
                 display: block;
+                ul {
+                    z-index: 3;
+                }
             }
             cursor: pointer;
         }

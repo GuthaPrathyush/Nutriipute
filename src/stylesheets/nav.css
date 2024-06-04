@@ -227,9 +227,8 @@ a {
             align-items: center;
             justify-content: center;
             overflow: auto;
-            background-color: transparent;
+            background-color: lightcyan;
             > .userProfile {
-                display: flex;
                 position: absolute;
                 top: 2%;
                 left: 5%;

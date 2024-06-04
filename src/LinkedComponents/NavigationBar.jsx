@@ -61,6 +61,7 @@ function NavigationBar() {
                 <li className='userProfile' onClick={() => profileOptions.current.classList.toggle('active')}>
                     <div className='profileImage'><i className="fa-solid fa-user"></i></div>
                     <div className="profileOptions" ref={profileOptions}>
+                        <p>check</p>
                         <ul>
                             <li>View Profile</li>
                             <li onClick={logout}>Logout</li>

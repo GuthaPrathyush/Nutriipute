@@ -230,6 +230,7 @@ a {
             background-color: lightcyan;
             > .userProfile {
                 display: flex;
+                position: absolute;
                 top: 2%;
                 left: 5%;
                 div {
@@ -237,6 +238,9 @@ a {
                 }
                 .fa-user {
                     display: flex;
+                }
+                .profileOptions {
+                    display: block;
                 }
             }
             li {

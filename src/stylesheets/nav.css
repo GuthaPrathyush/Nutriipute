@@ -95,7 +95,7 @@ nav {
                 z-index: 3;
                 ul {
                     z-index: 3;
-                    display: flex;
+                    display: none;
                     flex-direction: column;
                     align-items: center;
                     li {
@@ -107,19 +107,9 @@ nav {
                 }
             }
             .profileOptions.active {
-                z-index: 3;
                 display: block;
                 ul {
-                    z-index: 3;
                     display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    li {
-                        padding: 5px;
-                        width: 100%;
-                        text-align: center;
-                        border-bottom: 1px solid black;
-                    }
                 }
             }
             cursor: pointer;

@@ -95,7 +95,7 @@ nav {
                 z-index: 3;
                 ul {
                     z-index: 3;
-                    display: block;
+                    display: flex;
                     flex-direction: column;
                     align-items: center;
                     li {

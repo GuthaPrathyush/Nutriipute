@@ -92,9 +92,8 @@ nav {
                 border-bottom: unset;
                 top: 45px;
                 left: 0;
-                z-index: 2;
+                z-index: 3;
                 ul {
-                    z-index: 2;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -106,7 +105,8 @@ nav {
                     }
                 }
             }
-            .profileOptions.active {
+            .profileOptions {
+                z-index: 3;
                 display: block;
             }
             cursor: pointer;

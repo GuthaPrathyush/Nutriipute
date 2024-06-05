@@ -9,44 +9,63 @@
 }
 
 .cartItem {
-    width: 100%;
+    width: 85%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: rgb(239, 239, 239);
     border-radius: 10px;
     margin-bottom: 10px;
-    padding: 10px 10px;
+    padding: 5px 30px 5px 5px;
     position: relative;
-    img {
-        height: 190px;
-        border-radius: 10px;
-        aspect-ratio: 3/2;
-        object-fit: cover;
-        margin-right: 15px;
-        cursor: pointer;
+    text-align: center;
+    a {
+        height: 100px;
+        img {
+            height: 100%;
+            border-radius: 10px;
+            aspect-ratio: 3/2;
+            object-fit: cover;
+            cursor: pointer;
+        }
     }
     >i {
         position: absolute;
-        right: 1%;
-        top: 5%;
+        right: 10px;
+        top: 10px;
         font-size: 1.2rem;
         cursor: pointer;
     }
-    .itemDetails {
-        height: 190px;
-        align-self: flex-start;
-        flex-grow: 1;
+    h2 {
+        flex-basis: 40%;
+    }
+    .quantityContainer {
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        h2 {
-            margin-bottom: 15px;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 75px;
+        i {
+            font-size: 0.8rem;
+            cursor: pointer;
         }
-        p {
-            flex-basis: 65%;
-            overflow: auto;
-            padding-bottom: 10px;
+        div {
+            height: 15px;
+            font-size: 14px;
+            display: flex;
+            padding: 0 2px;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border: 1px solid black;
         }
+    }
+    .subTotalForOneItem {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        font-size: 1rem;
+        font-weight: bolder;
     }
 }
 
@@ -70,38 +89,6 @@
 }
 .shopNowDialogue:active {
     background-color: hsl(102, 41%, 44%);
-}
-
-.quantityContainer {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    i {
-        font-size: 0.8rem;
-        margin-right: 10px;
-        cursor: pointer;
-    }
-    div {
-        height: 15px;
-        font-size: 14px;
-        display: flex;
-        padding: 0 2px;
-        align-items: center;
-        justify-content: center;
-        background-color: white;
-        border: 1px solid black;
-        margin-right: 10px;
-    }
-    .subTotalForOneItem {
-        flex-grow: 1;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        background-color: transparent;
-        border: none;
-        font-size: 1rem;
-        font-weight: 800;
-    }
 }
 
 .subtotalPrice {
@@ -145,4 +132,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (max-width: 808px) {
+    .cartItem {
+        width: 100%;
+    }
+    .subtotalPrice {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 612px) {
+    .Cart {
+        .container {
+            padding: 40px 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 551px) {
+    .Cart {
+        .container {
+            padding: 40px 10px;
+            .subtotalPrice {
+                width: 85%;
+            }
+            .cartItem {
+                a {
+                    height: 75px;
+                }
+                h2 {
+                    flex-basis: 30%;
+                    font-size: 16px;
+                }
+                .quantityContainer {
+                    width: 60px;
+                }
+            }
+        }
+    }
 }

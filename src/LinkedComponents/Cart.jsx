@@ -21,19 +21,16 @@ function Cart() {
                                                 <Link to={`/${item.Domain}/${item.Name.replace(/ /g, '_')}`}>
                                                     <img src={item.Image} alt={item.Name} />
                                                 </Link>
-                                                <div className="itemDetails">
-                                                    <h2>{item.Name}</h2>
-                                                    <p>{item.Description}</p>
-                                                    <div className='quantityContainer'>
-                                                        <i className="fa-solid fa-minus" onClick={() => removeFromCart(item.Name)}></i>
-                                                        <div>
-                                                            {cartItems[item.Name]}
-                                                        </div>
-                                                        <i className="fa-solid fa-plus" onClick={() => addToCart(item.Name)}></i>
-                                                        <div className='subTotalForOneItem'>
-                                                            ₹{cartItems[item.Name]*(Number(item.Offer)?Number(item.Offer):Number(item.Price))}
-                                                        </div>
+                                                <h2>{item.Name}</h2>
+                                                <div className='quantityContainer'>
+                                                    <i className="fa-solid fa-minus" onClick={() => removeFromCart(item.Name)}></i>
+                                                    <div>
+                                                        {cartItems[item.Name]}
                                                     </div>
+                                                    <i className="fa-solid fa-plus" onClick={() => addToCart(item.Name)}></i>
+                                                </div>
+                                                <div className='subTotalForOneItem'>
+                                                    ₹{cartItems[item.Name]*(Number(item.Offer)?Number(item.Offer):Number(item.Price))}
                                                 </div>
                                                 <i className="fa-solid fa-xmark" onClick={() => deleteFromCart(item.Name)}></i>
                                             </div>

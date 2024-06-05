@@ -67,11 +67,11 @@ function AddAddress() {
             if(responseData.success) {
                 registrationErrorMessage.current.style.color = "green";
                 registrationErrorMessage.current.textContent = `Address added successfully`;
+                console.log(address);
+                console.log(form);
+                setAddress([...address, form]);
                 setTimeout(() => {
                     window.scrollTo(0, 0);
-                    console.log(address);
-                    console.log(form);
-                    setAddress([...address, form]);
                     navigate("/Checkout");
                 }, 1000);
             }

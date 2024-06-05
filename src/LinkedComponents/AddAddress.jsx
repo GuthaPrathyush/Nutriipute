@@ -29,6 +29,8 @@ function AddAddress() {
     const {address, setAddress} = useContext(WebsiteContext);
     const registrationErrorMessage = useRef();
 
+    const navigate = useNavigate();
+
     const nameF = /^[a-zA-Z\s]+$/;
     const phoneF = /^\+(?:[0-9] ?){6,14}[0-9]$/;
     const pincodeF = /^\d{6}$/;
@@ -41,7 +43,6 @@ function AddAddress() {
         form.Locality = form.Locality.trim();
         form.City = form.City.trim();
         form.Pincode = form.Pincode.trim();
-        const navigate = useNavigate();
         if(form.Name.trim() === '' || form.Phone.trim() === '' || form.Door.trim() === '' || form.Street.trim() === '' || form.City.trim() === '' || form.Pincode.trim() === '') {
             registrationErrorMessage.current.textContent = 'Empty Fields';
         }

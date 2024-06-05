@@ -67,10 +67,10 @@ function AddAddress() {
             console.log(responseData);
             if(responseData.success) {
                 toast.success("Address added successfully");
-                setAddress([...address, form]);
                 setTimeout(() => {
                     window.scrollTo(0, 0);
                     navigate("/Checkout");
+                    setAddress([...address, form]);
                 }, 1000);
             }
             else {

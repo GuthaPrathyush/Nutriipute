@@ -69,6 +69,8 @@ function AddAddress() {
                 registrationErrorMessage.current.textContent = `Address added successfully`;
                 setTimeout(() => {
                     window.scrollTo(0, 0);
+                    console.log(address);
+                    console.log(form);
                     setAddress([...address, form]);
                     navigate("/Checkout");
                 }, 1000);

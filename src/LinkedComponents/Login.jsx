@@ -44,7 +44,7 @@ function Login() {
             toast.success("Login Successful!");
             localStorage.setItem('auth-token', responseData.token);
             loginButton.current.disabled = false;
-            window.location.replace('/');
+            setTimeout(() => window.location.replace("/"), 1500);
         }
         else {
             toast.error(`${responseData.errors}`);

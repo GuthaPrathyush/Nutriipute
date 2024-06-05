@@ -176,7 +176,7 @@ function WebsiteContextProvider(props) {
             }
         }
     }
-    const contextValue = {AllProducts, cartItems, addToCart, removeFromCart, deleteFromCart, numberOfCartItems, subtotalPrice, address, indexToModify, setIndexToModify};
+    const contextValue = {AllProducts, cartItems, addToCart, removeFromCart, deleteFromCart, numberOfCartItems, subtotalPrice, address, setAddress, indexToModify, setIndexToModify};
     return (
         <WebsiteContext.Provider value={contextValue}>
             {props.children}

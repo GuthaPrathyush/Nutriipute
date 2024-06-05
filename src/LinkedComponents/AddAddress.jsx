@@ -1,4 +1,4 @@
-import {Link } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
 import Logo from '../assets/Logo.png';
 import '../stylesheets/addAddress.css';
 import axios from 'axios';
@@ -26,7 +26,7 @@ function AddAddress() {
         setForm({...form, [e.target.getAttribute('name')]: e.target.value});
     }
 
-    const {address} = useContext(WebsiteContext);
+    const {address, setAddress} = useContext(WebsiteContext);
     const registrationErrorMessage = useRef();
 
     const nameF = /^[a-zA-Z\s]+$/;
@@ -41,6 +41,7 @@ function AddAddress() {
         form.Locality = form.Locality.trim();
         form.City = form.City.trim();
         form.Pincode = form.Pincode.trim();
+        const navigate = useNavigate();
         if(form.Name.trim() === '' || form.Phone.trim() === '' || form.Door.trim() === '' || form.Street.trim() === '' || form.City.trim() === '' || form.Pincode.trim() === '') {
             registrationErrorMessage.current.textContent = 'Empty Fields';
         }
@@ -68,7 +69,8 @@ function AddAddress() {
                 registrationErrorMessage.current.textContent = `Address added successfully`;
                 setTimeout(() => {
                     window.scrollTo(0, 0);
-                    window.location.replace('/Checkout');
+                    setAddress([...address, form]);
+                    navigate("/Checkout");
                 }, 1000);
             }
             else {

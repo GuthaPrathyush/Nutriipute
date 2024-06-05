@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { WebsiteContext } from "../Contexts/WebsiteContext";
 import '../stylesheets/checkout.css';
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
 function Checkout() {
-    const { address, setIndexToModify } = useContext(WebsiteContext);
+    const { address, setIndexToModify, setAddress } = useContext(WebsiteContext);
     const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
     const navigate = useNavigate();
 
@@ -28,7 +27,8 @@ function Checkout() {
         }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
         if(responseData.success) {
             console.log("successfully deleted!");
-            window.location.replace('/Checkout');
+            setAddress(address.filter((_, i) => i != index));
+            navigate('/Checkout');
         }
         else {
             console.log("failed to deleted");

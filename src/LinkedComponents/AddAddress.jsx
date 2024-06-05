@@ -71,7 +71,7 @@ function AddAddress() {
                     window.scrollTo(0, 0);
                     navigate("/Checkout");
                     setAddress([...address, form]);
-                }, 1000);
+                }, 1500);
             }
             else {
                 toast.error(responseData.errors);

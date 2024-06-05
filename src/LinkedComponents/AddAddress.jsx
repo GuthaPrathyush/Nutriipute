@@ -6,6 +6,7 @@ import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css'
 import { useRef, useState, useContext } from 'react';
 import { WebsiteContext } from '../Contexts/WebsiteContext';
+import {toast} from 'react-hot-toast';
 
 axios.defaults.withCredentials = true;
 
@@ -27,7 +28,6 @@ function AddAddress() {
     }
 
     const {address, setAddress} = useContext(WebsiteContext);
-    const registrationErrorMessage = useRef();
 
     const navigate = useNavigate();
 
@@ -44,16 +44,16 @@ function AddAddress() {
         form.City = form.City.trim();
         form.Pincode = form.Pincode.trim();
         if(form.Name.trim() === '' || form.Phone.trim() === '' || form.Door.trim() === '' || form.Street.trim() === '' || form.City.trim() === '' || form.Pincode.trim() === '') {
-            registrationErrorMessage.current.textContent = 'Empty Fields';
+            toast.error("Empty Fields");
         }
         else if(!nameF.test(form.Name)) {
-            registrationErrorMessage.current.textContent = 'Invalid Name format, Name should only contain letters';
+            toast.error("Invalid Name format, Name should only contain letters");
         }
         else if(!phoneF.test(form.Phone.trim())) {
-            registrationErrorMessage.current.textContent = 'Invalid Phone number';
+            toast.error('Invalid Phone number');
         }
         else if(!pincodeF.test(form.Pincode)){
-            registrationErrorMessage.current.textContent = 'Invalid Pincode format';
+            toast.error('Invalid Pincode format');
         }
         else {
             let responseData;
@@ -66,10 +66,7 @@ function AddAddress() {
             }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
             console.log(responseData);
             if(responseData.success) {
-                registrationErrorMessage.current.style.color = "green";
-                registrationErrorMessage.current.textContent = `Address added successfully`;
-                console.log(address);
-                console.log(form);
+                toast.success("Address added successfully");
                 setAddress([...address, form]);
                 setTimeout(() => {
                     window.scrollTo(0, 0);
@@ -77,8 +74,7 @@ function AddAddress() {
                 }, 1000);
             }
             else {
-                registrationErrorMessage.current.style.color = "red";
-                registrationErrorMessage.current.textContent = responseData.errors;
+                toast.error(responseData.errors);
             }
         }
     }
@@ -122,7 +118,7 @@ function AddAddress() {
                     </div>
                     <label htmlFor="city">City</label>
                     <input type="text" id="city" name="City" value={form.City} onChange={(e) => handleInputChange(e)}/>
-                    <div className='registrationErrorMessage' ref={registrationErrorMessage}></div>
+                    <div className='registrationErrorMessage'></div>
                     <button onClick={validateForm}>Add Address</button>
                 </div>
             </div>

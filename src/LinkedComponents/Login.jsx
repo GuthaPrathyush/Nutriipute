@@ -14,6 +14,7 @@ function Login() {
     const hidePasswordRef = useRef();
     const passwordInput = useRef();
     const [hidden, setHidden] = useState(true);
+    const loginButton = useRef();
     const handleShowPassword = () => {
         if(hidden) {
             setHidden(!hidden);
@@ -28,7 +29,8 @@ function Login() {
             passwordInput.current.setAttribute("type", "password");
         }
     }
-    const Login = async () => {
+    const LoginUser = async () => {
+        loginButton.current.disabled = true;
         setEmail(String(email).toLowerCase());
         let responseData;
         await axios.post('https://nutriipute-backend.vercel.app/login',JSON.stringify({Email: email, Password: password}), {
@@ -41,10 +43,12 @@ function Login() {
         if(responseData.success) {
             toast.success("Login Successful!");
             localStorage.setItem('auth-token', responseData.token);
-            setTimeout(() => window.location.replace('/'), 2000);
+            loginButton.current.disabled = false;
+            window.location.replace('/');
         }
         else {
             toast.error(`${responseData.errors}`);
+            loginButton.current.disabled = false;
         }
     }
     if(localStorage.getItem('auth-token')) {
@@ -66,7 +70,7 @@ function Login() {
                                 <i ref={hidePasswordRef} className="fa-regular fa-eye-slash"></i>
                             </div>
                         </div>
-                        <button onClick={Login}>Login</button>
+                        <button ref={loginButton} onClick={LoginUser}>Login</button>
                         <p>New customer? <Link to="/Register" onClick={() => window.scrollTo(0, 69)}>Register</Link></p>
                     </div>
                 </div>

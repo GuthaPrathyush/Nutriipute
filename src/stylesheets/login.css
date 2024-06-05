@@ -34,11 +34,16 @@
                 font-size: 0.9rem;
                 background-color: hsl(102, 41%, 54%);
                 color: white;
-                border: unset;
+                border: none;
                 cursor: pointer;
             }
             button:active {
                 background-color: hsl(102, 41%, 44%);
+            }
+            button:disabled {
+                background-color: hsl(102, 41%, 54%);
+                color: white;
+                border: none;
             }
             #email {
                 margin-bottom: 25px;

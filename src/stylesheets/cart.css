@@ -169,6 +169,9 @@
                 .quantityContainer {
                     width: 60px;
                 }
+                .subTotalForOneItem {
+                    font-size: 12px;
+                }
             }
         }
     }

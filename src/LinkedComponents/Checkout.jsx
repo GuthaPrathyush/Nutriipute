@@ -68,6 +68,9 @@ function Checkout() {
                         {address.length === 0? <h3 className="addAddressReq">Please add Addresses</h3>: null}
                         {address.length >= 3 ? null : <Link to='/addAddress' onClick={() => scrollTo(0, 0)}>Add more</Link>}
                     </div>
+                    {address.length > 0? <div className="proceedToPaymentOuter">
+                        <Link to='/Payment' selectedAddress={selectedAddressIndex}>Proceed to Payment</Link>
+                    </div>: null}
                 </div>
             </div>
         );

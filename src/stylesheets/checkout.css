@@ -1,6 +1,17 @@
 .Checkout {
     min-height: calc(100vh - 69px);
     > .container {
+        > .proceedToPaymentOuter {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            a {
+                width: 200px;
+                height: 35px;
+                background-color: hsl(102, 41%, 54%);
+            }
+        }
         > .addAddressOuter {
             padding: 20px;
             border: 1px groove black;

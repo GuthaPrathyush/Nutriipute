@@ -17,7 +17,6 @@ import Profile from "./LinkedComponents/Profile.jsx";
 import Checkout from "./LinkedComponents/Checkout.jsx";
 import AddAddress from "./LinkedComponents/AddAddress.jsx";
 import EditAddress from './LinkedComponents/EditAddress.jsx';
-import Payment from "./LinkedComponents/Payment.jsx";
 import {Toaster} from 'react-hot-toast';
 import axios from "axios";
 

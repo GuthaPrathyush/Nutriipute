@@ -1,7 +1,12 @@
-import { useContext } from "react";
-import { WebsiteContext } from "../Contexts/WebsiteContext";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate } from 'react-router-dom';
+import Logo from '../assets/Logo.png';
 import '../stylesheets/addAddress.css';
+import axios from 'axios';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css'
+import { useState, useContext } from 'react';
+import { WebsiteContext } from '../Contexts/WebsiteContext';
+import {toast} from 'react-hot-toast';
 
 function EditAddress() {
     const {indexToModify, setIndexToModify, address, setAddress} = useContext(WebsiteContext);

@@ -58,7 +58,7 @@ function EditAddress() {
             }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
             console.log(responseData);
             if(responseData.success) {
-                toast.success("Address added successfully");
+                toast.success("Address edited successfully");
                 setTimeout(() => {
                     window.scrollTo(0, 0);
                     navigate("/Checkout");
@@ -111,7 +111,7 @@ function EditAddress() {
                     </div>
                     <label htmlFor="city">City</label>
                     <input type="text" id="city" name="City" value={form.City} onChange={(e) => handleInputChange(e)}/>
-                    <button onClick={validateForm}>Add Address</button>
+                    <button onClick={validateForm}>Edit Address</button>
                 </div>
             </div>
         </div>

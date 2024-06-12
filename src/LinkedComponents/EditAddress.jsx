@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { WebsiteContext } from "../Contexts/WebsiteContext";
 import { useNavigate } from "react-router-dom";
+import '../stylesheets/addAddress.css';
 
 function EditAddress() {
     const {indexToModify, setIndexToModify, address, setAddress} = useContext(WebsiteContext);

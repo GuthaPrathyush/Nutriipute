@@ -118,7 +118,6 @@ function AddAddress() {
                     </div>
                     <label htmlFor="city">City</label>
                     <input type="text" id="city" name="City" value={form.City} onChange={(e) => handleInputChange(e)}/>
-                    <div className='registrationErrorMessage'></div>
                     <button onClick={validateForm}>Add Address</button>
                 </div>
             </div>

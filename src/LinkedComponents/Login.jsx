@@ -38,7 +38,7 @@ function Login() {
                 'Content-Type': 'application/json'
             }
         });
-        await toast.promise(loginPromise, {
+        toast.promise(loginPromise, {
             loading: "Logging in...",
             success: response => {
                 responseData = response.data;
@@ -53,23 +53,6 @@ function Login() {
                 return responseData.errors;
             }
         });
-        // await axios.post('https://nutriipute-backend.vercel.app/login',JSON.stringify({Email: email.toLowerCase(), Password: password}), {
-        //     headers: {
-        //         Accept: 'application/form-data',
-        //         'Content-Type': 'application/json'
-        //     }
-        // }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
-        console.log(responseData);
-        // if(responseData.success) {
-        //     toast.success("Login Successful!");
-        //     localStorage.setItem('auth-token', responseData.token);
-        //     loginButton.current.disabled = false;
-        //     setTimeout(() => window.location.replace("/"), 1500);
-        // }
-        // else {
-        //     toast.error(`${responseData.errors}`);
-        //     loginButton.current.disabled = false;
-        // }
     }
     if(localStorage.getItem('auth-token')) {
         window.location.replace('/Profile');

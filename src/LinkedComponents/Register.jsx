@@ -73,7 +73,7 @@ function Register() {
             toast.error('Invalid Email address')
         }
         else if(!passF.test(form.Password)){
-            toast.error('Invalid Password format, The password should contain atleast one uppercase letter, one lowercase letter, one digit and a special character!');
+            toast.error('Invalid Password format, The password should contain atleast one uppercase letter, one lowercase letter, one digit and a special character!', {duration: 5000});
         }
         else if(form.Password != cnfrmPass) {
             toast.error('Confirm Password should be same as entered Password');

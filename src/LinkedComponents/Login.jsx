@@ -31,7 +31,6 @@ function Login() {
     }
     const LoginUser = async () => {
         loginButton.current.disabled = true;
-        let responseData;
         const loginPromise = axios.post('https://nutriipute-backend.vercel.app/login',JSON.stringify({Email: email.toLowerCase(), Password: password}), {
             headers: {
                 Accept: 'application/form-data',
@@ -41,16 +40,14 @@ function Login() {
         toast.promise(loginPromise, {
             loading: "Logging in...",
             success: response => {
-                responseData = response.data;
-                localStorage.setItem('auth-token', responseData.token);
+                localStorage.setItem('auth-token', response.data.token);
                 loginButton.current.disabled = false;
                 setTimeout(() => window.location.replace("/"), 1500);
                 return "Login Successful!";
             },
             error: error => {
-                responseData = error.response.data;
                 loginButton.current.disabled = false;
-                return responseData.errors;
+                return error.response.data.errors;
             }
         });
     }

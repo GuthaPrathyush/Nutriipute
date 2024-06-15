@@ -79,25 +79,29 @@ function Register() {
             toast.error('Confirm Password should be same as entered Password');
         }
         else {
-            let responseData;
-            await axios.post('https://nutriipute-backend.vercel.app/register',JSON.stringify(form), {
+            const registerPromise = axios.post('https://nutriipute-backend.vercel.app/register',JSON.stringify(form), {
                 headers: {
                     Accept: 'application/form-data',
                     'Content-Type': 'application/json'
                 }
-            }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
-            if(responseData.success) {
-                toast.success(() => (<span>
-                    Welcome <b>{form.Name}</b>, Please login using your credentials!
-                </span>));
-                setTimeout(() => {
-                    window.scrollTo(0, 0);
-                    navigate('/login');
-                }, 5000);
-            }
-            else {
-                toast.error(responseData.errors);
-            }
+            });
+            // .then(response => responseData = response.data).catch(error => responseData = error.response.data);
+            toast.promise(
+                registerPromise,
+                {
+                    loading: 'Signing up...',
+                    success: response => {
+                        setTimeout(() => {
+                            window.scrollTo(0, 0);
+                            navigate('/login');
+                        }, 5000);
+                        return (<span>Welcome <b>{form.Name}</b>, Please login using your credentials!</span>);
+                    },
+                    error: error => {
+                        return error.response.data.errors;
+                    }
+                }
+            );
         }
     }
     if(localStorage.getItem('auth-token')) {

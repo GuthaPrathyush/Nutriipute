@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import Breakfast from '../assets/Breakfast';
 import Salads from '../assets/Salads';
 import BrownRiceBowls from '../assets/BrownRiceBowls';
@@ -86,8 +86,6 @@ function WebsiteContextProvider(props) {
         setNumberOfCartItems(count);
         setSubtotalPrice(price);
     }, [cartItems]);
-    // const [isLoggedIn, setIsLoggedIn] = useState(false);
-    // const [loginInfo, setLoginInfo] = useState({});
     async function addToCart(itemName) {
         console.log(cartItems[itemName]);
         setCartItems((cartItemsCopy) => {

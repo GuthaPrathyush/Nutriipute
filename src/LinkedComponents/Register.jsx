@@ -3,6 +3,7 @@ import '../stylesheets/register.css';
 import Logo from '../assets/Logo.png';
 import { useRef, useState } from "react";
 import axios from "axios";
+import { toast } from 'react-hot-toast';
 
 axios.defaults.withCredentials = true;
 
@@ -53,8 +54,6 @@ function Register() {
 
     const [cnfrmPass, setCnfrmPass] = useState('');
 
-    const registrationErrorMessage = useRef();
-
     const nameF = /^[a-zA-Z\s]+$/;
     const emailF = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const passF = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W\_])[A-Za-z\d\W\_]+$/;
@@ -62,21 +61,22 @@ function Register() {
     const validateForm = async () => {
         form.Name = form.Name.trim();
         form.Email = form.Email.trim();
+        form.Email = String(form.Email).toLowerCase()
         if(form.Name.trim() === '' || form.Email.trim() === '' || form.Password.trim() === '' || cnfrmPass.trim() === '') {
-            registrationErrorMessage.current.textContent = 'Empty Fields';
+            toast.error('Empty Fields');
+
         }
         else if(!nameF.test(form.Name)) {
-            registrationErrorMessage.current.textContent = 'Invalid Name format, Name should only contain letters';
+            toast.error('Invalid Name format, Name should only contain letters');
         }
         else if(!emailF.test(form.Email)) {
-            form.Email = String(form.Email).toLowerCase();
-            registrationErrorMessage.current.textContent = 'Invalid Email address';
+            toast.error('Invalid Email address')
         }
         else if(!passF.test(form.Password)){
-            registrationErrorMessage.current.textContent = 'Invalid Password format, The password should contain atleast one uppercase letter, one lowercase letter, one digit and a special character!'
+            toast.error('Invalid Password format, The password should contain atleast one uppercase letter, one lowercase letter, one digit and a special character!');
         }
         else if(form.Password != cnfrmPass) {
-            registrationErrorMessage.current.textContent = 'Confirm Password should be same as entered Password';
+            toast.error('Confirm Password should be same as entered Password');
         }
         else {
             let responseData;
@@ -87,16 +87,16 @@ function Register() {
                 }
             }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
             if(responseData.success) {
-                registrationErrorMessage.current.style.color = "green";
-                registrationErrorMessage.current.textContent = `Welcome ${form.Name}, Please login using your credentials!`;
+                toast.success(() => (<span>
+                    Welcome <b>{form.Name}</b>, Please login using your credentials!
+                </span>));
                 setTimeout(() => {
                     window.scrollTo(0, 0);
                     navigate('/login');
                 }, 5000);
             }
             else {
-                registrationErrorMessage.current.style.color = "red";
-                registrationErrorMessage.current.textContent = responseData.errors;
+                toast.error(responseData.errors);
             }
         }
     }
@@ -129,7 +129,6 @@ function Register() {
                                 <i ref={hidePasswordRefCnfrm} className="fa-regular fa-eye-slash"></i>
                             </div>
                         </div>
-                        <div className="registrationErrorMessage" ref={registrationErrorMessage}></div>
                         <button onClick={validateForm}>Register</button>
                         <p>Already Have an account? <Link to="/Login" onClick={() => window.scrollTo(0, 0)}>Login</Link></p>
                     </div>

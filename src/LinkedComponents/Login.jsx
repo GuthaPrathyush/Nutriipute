@@ -38,7 +38,7 @@ function Login() {
                 'Content-Type': 'application/json'
             }
         });
-        toast.promise(loginPromise, {
+        await toast.promise(loginPromise, {
             loading: "Logging in...",
             success: response => {
                 responseData = response.data;

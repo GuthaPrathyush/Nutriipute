@@ -94,7 +94,7 @@ function Register() {
                         setTimeout(() => {
                             window.scrollTo(0, 0);
                             navigate('/login');
-                        }, 5000);
+                        }, 3000);
                         return (<span>Welcome <b>{form.Name}</b>, Please login using your credentials!</span>);
                     },
                     error: error => {

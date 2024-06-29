@@ -21,6 +21,7 @@ async function getDefaultCart() {
             }
         }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
         if(responseData.success) {
+            console.log(responseData.Cart);
             return responseData.Cart;
         }
         else {

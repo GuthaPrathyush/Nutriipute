@@ -1,22 +1,20 @@
 import React, {useContext} from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Breakfast from '../assets/Breakfast';
-import Salads from '../assets/Salads';
-import BrownRiceBowls from '../assets/BrownRiceBowls';
-import ProtienStarters from '../assets/ProtienStarters';
+import Error from './Error';
 import '../stylesheets/product.css';
 import { WebsiteContext } from '../Contexts/WebsiteContext';
 import {toast} from 'react-hot-toast';
 
-const menu = [Breakfast, Salads, BrownRiceBowls, ProtienStarters];
 
-function Product(props) {
-    let { productName } = useParams();
+function Product() {
+    let { domain, productName } = useParams();
+    console.log(domain);
+    const {addToCart, AllProducts} = useContext(WebsiteContext);
     productName = String(productName).replace(/_/g, ' ');
-    const page = Number(props.page);
-    const domain = menu[page];
-    const product = domain.find((item) => item.Name === productName);
-    const {addToCart} = useContext(WebsiteContext);
+    const product = AllProducts.find((item) => item.Name.toLowerCase() === productName.toLowerCase() && String(domain).toLowerCase() === item.Domain.toLowerCase());
+    if(product == null) {
+        return (<Error></Error>);
+    }
     function getPrice() {
         if(Number(product.Offer) || (Number(product.Offer) > 0 && Number(product.Offer) < Number(product.Price))) {
             return (

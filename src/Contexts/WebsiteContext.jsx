@@ -85,7 +85,7 @@ function WebsiteContextProvider(props) {
         }
         setNumberOfCartItems(count);
         setSubtotalPrice(price);
-    }, [cartItems]);
+    }, []);
     async function addToCart(itemName) {
         console.log(cartItems[itemName]);
         setCartItems((cartItemsCopy) => {

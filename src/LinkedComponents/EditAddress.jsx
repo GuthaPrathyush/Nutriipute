@@ -4,7 +4,7 @@ import '../stylesheets/addAddress.css';
 import axios from 'axios';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css'
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { WebsiteContext } from '../Contexts/WebsiteContext';
 import {toast} from 'react-hot-toast';
 
@@ -21,6 +21,12 @@ function EditAddress() {
     }
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        return () => {
+            setIndexToModify(null);
+        }
+    }, []);
 
     const nameF = /^[a-zA-Z\s]+$/;
     const phoneF = /^\+(?:[0-9] ?){6,14}[0-9]$/;

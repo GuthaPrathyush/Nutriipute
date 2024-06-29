@@ -77,8 +77,11 @@ function EditAddress() {
             }
         }
     }
-    if(!localStorage.getItem('auth-token') || indexToModify == null) {
-        window.location.replace('/login');
+    if(!localStorage.getItem('auth-token')) {
+        navigate('/login');
+    }
+    if(indexToModify == null) {
+        navigate('/');
     }
     return (
         <div className="addAddress">

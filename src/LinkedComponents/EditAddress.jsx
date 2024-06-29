@@ -22,11 +22,11 @@ function EditAddress() {
 
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     return () => {
-    //         setIndexToModify(null);
-    //     }
-    // }, []);
+    useEffect(() => {
+        return () => {
+            setIndexToModify(null);
+        }
+    }, []);
 
     const nameF = /^[a-zA-Z\s]+$/;
     const phoneF = /^\+(?:[0-9] ?){6,14}[0-9]$/;

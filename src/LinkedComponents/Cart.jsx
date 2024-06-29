@@ -6,6 +6,7 @@ import React, {useContext} from 'react';
 function Cart() {
     const {cartItems, AllProducts, numberOfCartItems, addToCart, removeFromCart, deleteFromCart, subtotalPrice} = useContext(WebsiteContext);
     const navigate = useNavigate();
+    console.log(cartItems);
     return (
         <div className="Cart">
             <div className="container">

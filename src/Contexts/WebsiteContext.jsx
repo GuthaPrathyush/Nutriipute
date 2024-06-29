@@ -21,7 +21,6 @@ async function getDefaultCart() {
             }
         }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
         if(responseData.success) {
-            console.log(responseData.Cart);
             return responseData.Cart;
         }
         else {
@@ -63,6 +62,17 @@ function WebsiteContextProvider(props) {
     useEffect(() => {
         async function fetchDefaultCart() {
             const defaultCart = await getDefaultCart();
+            let count = 0;
+            let price = 0;
+            for (const itemName in defaultCart) {
+                count += defaultCart[itemName];
+                const item = AllProducts.find(e => e.Name === itemName);
+                if (item) {
+                    price += defaultCart[itemName] * (Number(item.Offer) || Number(item.Price));
+                }
+            }
+            setNumberOfCartItems(count);
+            setSubtotalPrice(price);
             setCartItems(defaultCart);
         }
         async function fetchDefaultAddress() {
@@ -73,20 +83,6 @@ function WebsiteContextProvider(props) {
         fetchDefaultCart();
     }, []);
     console.log(address);
-
-    useEffect(() => {
-        let count = 0;
-        let price = 0;
-        for (const itemName in cartItems) {
-            count += cartItems[itemName];
-            const item = AllProducts.find(e => e.Name === itemName);
-            if (item) {
-                price += cartItems[itemName] * (Number(item.Offer) || Number(item.Price));
-            }
-        }
-        setNumberOfCartItems(count);
-        setSubtotalPrice(price);
-    }, []);
     async function addToCart(itemName) {
         console.log(cartItems[itemName]);
         setCartItems((cartItemsCopy) => {

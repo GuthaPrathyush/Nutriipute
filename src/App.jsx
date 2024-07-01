@@ -43,6 +43,9 @@ function App() {
                 <Route path='/Checkout' element={<Checkout/>}></Route>
                 <Route path='/addAddress' element={<AddAddress/>}></Route>
                 <Route path='/editAddress' element={<EditAddress/>}></Route>
+                <Route path='/Search'>
+                    <Route path=':searchText' element={<Search></Search>}></Route>
+                </Route>
                 <Route path='/:domain/:productName' element={<Product/>}></Route>
                 {/* <Route path='/Salads'>
                     <Route path=':productName' element={<Product page="1"/>} />
@@ -52,9 +55,6 @@ function App() {
                 </Route>
                 <Route path='/ProtienStarters'>
                     <Route path=':productName' element={<Product page="3"/>} />
-                </Route>
-                <Route path='/Search'>
-                    <Route path=':searchText' element={<Search></Search>}></Route>
                 </Route> */}
                 <Route path='/*' element={<Error/>}></Route>
             </Routes>

@@ -83,6 +83,7 @@ function WebsiteContextProvider(props) {
             const defaultAddress = await getDefaultAddress();
             let count = 0;
             let price = 0;
+            console.log(defaultProducts);
             for (const product_id in defaultCart) {
                 count += defaultCart[product_id];
                 const item = defaultProducts.find(e => e.product_id === product_id);

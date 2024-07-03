@@ -32,7 +32,7 @@ function ItemHorizontal(props) {
                     {(() => {
                         if(item.InStock) {
                             return (
-                                <button type='button' onClick={(e) => {e.preventDefault();addToCart(item.product_id);toast.success("Added to Cart!", {position: "top-right", style: {position: "relative", top: "70px", right: "5px"}})}}>Add to Cart</button>
+                                <button type='button' onClick={(e) => {e.preventDefault();addToCart(item.product_id);}}>Add to Cart</button>
                             );
                         }
                         else {

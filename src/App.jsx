@@ -30,7 +30,7 @@ function App() {
     if(!loaded) {
         return(
             <div className="Home">
-                <div className="container" style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
+                <div className="container" style={{flexDirection: "row", justifyContent: "center", alignItems: "center", height: "100vh"}}>
                     <ClipLoader/>
                 </div>
             </div>

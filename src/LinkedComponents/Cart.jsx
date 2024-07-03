@@ -33,7 +33,7 @@ function Cart() {
                                                 <div className='subTotalForOneItem'>
                                                     ₹{cartItems[item.product_id]*(Number(item.Offer)?Number(item.Offer):Number(item.Price))}
                                                 </div>
-                                                <i className="fa-solid fa-xmark" onClick={() => deleteFromCart(item.product_id)}></i>
+                                                <i className="fa-solid fa-xmark" onClick={() => {deleteFromCart(item.product_id); toast.success("Deleted from Cart Successfully!", {position: "top-right", style: {position: "relative", top: "70px", right: "5px"}});}}></i>
                                             </div>
                                         );
                                     }

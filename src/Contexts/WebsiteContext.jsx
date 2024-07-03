@@ -71,6 +71,14 @@ function WebsiteContextProvider(props) {
     const [AllProductsMulti, setAllProductsMulti] = useState([]);
 
     useEffect(() => {
+        async function fetchProducts() {
+            const defaultProducts = await getDefaultProducts();
+            setAllProductsMulti(defaultProducts);
+            setAllProducts(defaultProducts.flat());
+        }
+        fetchProducts();
+    });
+    useEffect(() => {
         async function fetchDefaultCart() {
             const defaultCart = await getDefaultCart();
             let count = 0;
@@ -91,12 +99,6 @@ function WebsiteContextProvider(props) {
             setAddress(defaultAddress);
             setLoaded(true);
         }
-        async function fetchProducts() {
-            const defaultProducts = await getDefaultProducts();
-            setAllProductsMulti(defaultProducts);
-            setAllProducts(defaultProducts.flat());
-        }
-        fetchProducts();
         fetchDefaultCart();
         fetchDefaultAddress();
     }, []);
@@ -121,9 +123,6 @@ function WebsiteContextProvider(props) {
                     'auth-token': localStorage.getItem('auth-token')
                 }
             }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
-            if(responseData.success) {
-                toast.success("Added to Cart!", {position: "top-right", style: {position: "relative", top: "70px", right: "5px"}});
-            }
         }
     }
     async function removeFromCart(product_id) {
@@ -179,9 +178,6 @@ function WebsiteContextProvider(props) {
                     'auth-token': localStorage.getItem('auth-token')
                 }
             }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
-            if(responseData.success) {
-                toast.success("Deleted from Cart Successfully!", {position: "top-right", style: {position: "relative", top: "70px", right: "5px"}})
-            }
         }
     }
     const contextValue = {AllProducts, cartItems, addToCart, removeFromCart, deleteFromCart, numberOfCartItems, subtotalPrice, address, setAddress, indexToModify, setIndexToModify, loaded, AllProductsMulti};

@@ -19,10 +19,22 @@ import AddAddress from "./LinkedComponents/AddAddress.jsx";
 import EditAddress from './LinkedComponents/EditAddress.jsx';
 import {Toaster} from 'react-hot-toast';
 import axios from "axios";
+import { useContext } from "react";
+import { WebsiteContext } from "./Contexts/WebsiteContext.jsx";
 
 axios.defaults.withCredentials = true;
 
 function App() {
+    const {loaded} = useContext(WebsiteContext);
+    if(!loaded) {
+        return(
+            <div className="Home">
+                <div className="container" style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
+                    <ClipLoader/>
+                </div>
+            </div>
+        );
+    }
     return (
         <>
             <Toaster position="bottom-center"/>

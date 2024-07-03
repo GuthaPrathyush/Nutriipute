@@ -9,7 +9,6 @@ function Home() {
     const AllProductsShuffled = useMemo(() => {
         return shuffleArray([...AllProducts]);
     }, [AllProducts]);
-    console.log("hii shuffled--");
     const renderItems = (products, isVeg) => {
         let countForVeg = 0;
         return products.map((item, index) => {

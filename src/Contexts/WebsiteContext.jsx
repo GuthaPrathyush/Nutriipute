@@ -50,7 +50,18 @@ async function getDefaultAddress() {
     }
 }
 
-const AllProducts = [...Breakfast, ...Salads, ...BrownRiceBowls, ...ProtienStarters];
+async function getDefaultProducts()  {
+    let responseData = null;
+    await axios.post('http://localhost:3000/getAllProducts', JSON.stringify({token: "Your auth-token"}), {
+            headers: {
+                Accept: 'application/form-data',
+                'Content-Type': 'application/json'
+            }
+        }
+    ).then((response) => responseData = response.data.Products).catch((error) => responseData = []);
+    return responseData;
+}
+
 
 function WebsiteContextProvider(props) {
     const [cartItems, setCartItems] = useState({});
@@ -58,6 +69,9 @@ function WebsiteContextProvider(props) {
     const [subtotalPrice, setSubtotalPrice] = useState(0);
     const [address, setAddress] = useState([]);
     const [indexToModify, setIndexToModify] = useState(null);
+    const [loaded, setLoaded] = useState(false);
+    const [AllProducts, setAllProducts] = useState([]);
+    const [AllProductsMulti, setAllProductsMulti] = useState([]);
 
     useEffect(() => {
         async function fetchDefaultCart() {
@@ -79,6 +93,13 @@ function WebsiteContextProvider(props) {
             const defaultAddress = await getDefaultAddress();
             setAddress(defaultAddress);
         }
+        async function fetchProducts() {
+            const defaultProducts = await getDefaultProducts();
+            setAllProductsMulti(defaultProducts);
+            setAllProducts(defaultProducts.flat());
+            setLoaded(true);
+        }
+        fetchProducts();
         fetchDefaultAddress();
         fetchDefaultCart();
     }, []);

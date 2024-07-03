@@ -52,7 +52,7 @@ async function getDefaultAddress() {
 
 async function getDefaultProducts()  {
     let responseData = null;
-    await axios.post('http://localhost:3000/getAllProducts', JSON.stringify({token: "Your auth-token"}), {
+    await axios.post('https://nutriipute-backend.vercel.app/getAllProducts', JSON.stringify({token: "Your auth-token"}), {
             headers: {
                 Accept: 'application/form-data',
                 'Content-Type': 'application/json'

@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import {toast} from 'react-hot-toast';
 
 export const WebsiteContext = createContext(null);
 axios.defaults.withCredentials = true;
@@ -47,7 +48,6 @@ async function getDefaultAddress() {
 }
 
 async function getDefaultProducts()  {
-    console.log("getting products");
     let responseData = null;
     await axios.post('https://nutriipute-backend.vercel.app/getAllProducts', JSON.stringify({token: "Your auth-token"}), {
             headers: {
@@ -56,7 +56,6 @@ async function getDefaultProducts()  {
             }
         }
     ).then((response) => responseData = response.data.Products).catch((error) => responseData = []);
-    console.log(responseData);
     return responseData;
 }
 
@@ -101,9 +100,7 @@ function WebsiteContextProvider(props) {
         fetchDefaultCart();
         fetchDefaultAddress();
     }, []);
-    console.log(address);
     async function addToCart(product_id) {
-        console.log(cartItems[product_id]);
         setCartItems((cartItemsCopy) => {
             cartItemsCopy[product_id] = cartItemsCopy[product_id]?cartItemsCopy[product_id]+1: 1;
             return cartItemsCopy;
@@ -113,11 +110,8 @@ function WebsiteContextProvider(props) {
                 return ({...e});
             }
         });
-        console.log(item);
-        console.log(cartItems);
         setSubtotalPrice(subtotalPriceCopy => subtotalPriceCopy+(Number(item.Offer)?Number(item.Offer):Number(item.Price)));
         setNumberOfCartItems(numberOfCartItemsCopy => numberOfCartItemsCopy+1);
-        console.log(subtotalPrice);
         if(localStorage.getItem('auth-token')) {
             let responseData;
             await axios.post('https://nutriipute-backend.vercel.app/addToCart', JSON.stringify({product_id: product_id}), {
@@ -128,7 +122,7 @@ function WebsiteContextProvider(props) {
                 }
             }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
             if(responseData.success) {
-                console.log("Success");
+                toast.success("Added to Cart!", {position: "top-right", style: {position: "relative", top: "70px", right: "5px"}})
             }
         }
     }

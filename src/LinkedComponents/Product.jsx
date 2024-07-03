@@ -67,7 +67,7 @@ function Product() {
                             if(product.InStock) {
                                 return (
                                     <div className='BuyAddToCartContainer'>
-                                    <button className="AddToCart" onClick={() => {addToCart(product.product_id); toast.success("Added to Cart!", {position: "top-right", style: {position: "relative", top: "70px", right: "5px"}})}}>Add to Cart</button>
+                                    <button className="AddToCart" onClick={() => addToCart(product.product_id)}>Add to Cart</button>
                                     <button className="Buy">Buy Now</button>
                                     </div>
                                 );

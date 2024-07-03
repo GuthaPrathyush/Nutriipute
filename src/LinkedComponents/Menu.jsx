@@ -14,7 +14,7 @@ function Menu() {
                     <h1>Breakfasts</h1>
                     <div className='menuContainer'>
                         {Breakfast.map((item, i) => {
-                            return <Link key={i} to={`/${item.Domain}/${item.Name.replace(/ /g, '_')}`}><Item items={item}/></Link>
+                            return <Link key={i} to={`/${item.product_id}`}><Item items={item}/></Link>
                         })}
                     </div>
                     <hr />

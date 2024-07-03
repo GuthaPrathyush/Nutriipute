@@ -21,7 +21,7 @@ function ItemHorizontal(props) {
     }
     return (
         <div className="itemHorizontal">
-            <Link onClick={() => scrollTo(0,0)} to={`/${item.Domain}/${item.Name.replace(/ /g, '_')}`}>
+            <Link onClick={() => scrollTo(0,0)} to={`/${item.product_id}`}>
                 <img src={item.Image} alt="" />
             </Link>
             <div className="itemDetails">

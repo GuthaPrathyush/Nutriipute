@@ -7,14 +7,19 @@ import {toast} from 'react-hot-toast';
 
 
 function Product() {
-    let { domain, productName } = useParams();
+    const {addToCart, AllProductsMulti} = useContext(WebsiteContext);
+    let { product_id } = useParams();
+    const index = product_id.indexOf('-');
+    if(index === -1) {
+        return (<Error/>);
+    }
+    const domain = String(product_id.substring(0, index)).replace(/_/g, ' ').toLowerCase();
     console.log(domain);
-    const {addToCart, AllProducts} = useContext(WebsiteContext);
-    productName = String(productName).replace(/_/g, ' ');
-    const product = AllProducts.find((item) => item.Name.toLowerCase() === productName.toLowerCase() && String(domain).toLowerCase() === item.Domain.toLowerCase());
-    if(product == null) {
+    const productSection = AllProductsMulti.find((item) => String(item[0].Section).toLowerCase() === domain);
+    if(productSection == null) {
         return (<Error></Error>);
     }
+    const product = productSection.find((item) => String(item.product_id).toLowerCase() === product_id.toLowerCase());
     function getPrice() {
         if(Number(product.Offer) || (Number(product.Offer) > 0 && Number(product.Offer) < Number(product.Price))) {
             return (

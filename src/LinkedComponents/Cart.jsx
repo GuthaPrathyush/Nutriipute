@@ -19,7 +19,7 @@ function Cart() {
                                     if(cartItems[item.Name] > 0) {
                                         return (
                                             <div key={index} className="cartItem">
-                                                <Link to={`/${item.Domain}/${item.Name.replace(/ /g, '_')}`}>
+                                                <Link to={`/${item.product_id}`}>
                                                     <img src={item.Image} alt={item.Name} />
                                                 </Link>
                                                 <h2>{item.Name}</h2>

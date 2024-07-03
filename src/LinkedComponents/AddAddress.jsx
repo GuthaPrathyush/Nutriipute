@@ -7,6 +7,7 @@ import 'react-phone-number-input/style.css'
 import { useState, useContext } from 'react';
 import { WebsiteContext } from '../Contexts/WebsiteContext';
 import {toast} from 'react-hot-toast';
+import {ClipLoader} from 'react-spinners';
 
 axios.defaults.withCredentials = true;
 
@@ -27,7 +28,7 @@ function AddAddress() {
         setForm({...form, [e.target.getAttribute('name')]: e.target.value});
     }
 
-    const {address, setAddress} = useContext(WebsiteContext);
+    const {address, setAddress, loaded} = useContext(WebsiteContext);
 
     const navigate = useNavigate();
 
@@ -80,6 +81,15 @@ function AddAddress() {
     }
     if(!localStorage.getItem('auth-token') || address.length >= 3) {
         window.location.replace('/login');
+    }
+    if(!loaded) {
+        return (
+            <div className="addAddress">
+                <div className="container">
+                    <ClipLoader style={{alignSelf: "center"}}/>
+                </div>
+            </div>
+        );
     }
     return (
         <div className="addAddress">

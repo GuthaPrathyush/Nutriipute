@@ -92,16 +92,16 @@ function WebsiteContextProvider(props) {
         async function fetchDefaultAddress() {
             const defaultAddress = await getDefaultAddress();
             setAddress(defaultAddress);
+            setLoaded(true);
         }
         async function fetchProducts() {
             const defaultProducts = await getDefaultProducts();
             setAllProductsMulti(defaultProducts);
             setAllProducts(defaultProducts.flat());
-            setLoaded(true);
         }
         fetchProducts();
-        fetchDefaultAddress();
         fetchDefaultCart();
+        fetchDefaultAddress();
     }, []);
     console.log(address);
     async function addToCart(itemName) {
@@ -192,7 +192,7 @@ function WebsiteContextProvider(props) {
             }
         }
     }
-    const contextValue = {AllProducts, cartItems, addToCart, removeFromCart, deleteFromCart, numberOfCartItems, subtotalPrice, address, setAddress, indexToModify, setIndexToModify};
+    const contextValue = {AllProducts, cartItems, addToCart, removeFromCart, deleteFromCart, numberOfCartItems, subtotalPrice, address, setAddress, indexToModify, setIndexToModify, loaded};
     return (
         <WebsiteContext.Provider value={contextValue}>
             {props.children}

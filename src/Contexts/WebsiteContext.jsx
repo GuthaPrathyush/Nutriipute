@@ -122,7 +122,7 @@ function WebsiteContextProvider(props) {
                 }
             }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
             if(responseData.success) {
-                toast.success("Added to Cart!", {position: "top-right", style: {position: "relative", top: "70px", right: "5px"}})
+                toast.success("Added to Cart!", {position: "top-right", style: {position: "relative", top: "70px", right: "5px"}});
             }
         }
     }
@@ -180,7 +180,7 @@ function WebsiteContextProvider(props) {
                 }
             }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
             if(responseData.success) {
-                toast.success("Deleted from Cart Successfully");
+                toast.success("Deleted from Cart Successfully!", {position: "top-right", style: {position: "relative", top: "70px", right: "5px"}})
             }
         }
     }

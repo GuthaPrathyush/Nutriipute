@@ -84,16 +84,17 @@ function WebsiteContextProvider(props) {
             let count = 0;
             let price = 0;
             console.log(defaultProducts);
+            const defaultProductsFlat = defaultProducts.flat();
             for (const product_id in defaultCart) {
                 count += defaultCart[product_id];
-                const item = defaultProducts.find(e => e.product_id === product_id);
+                const item = defaultProductsFlat.find(e => e.product_id === product_id);
                 if (item) {
                     price += defaultCart[product_id] * (Number(item.Offer) || Number(item.Price));
                 }
                 console.log(price);
             }
             setAllProductsMulti(defaultProducts);
-            setAllProducts(defaultProducts.flat());
+            setAllProducts(defaultProductsFlat);
             setNumberOfCartItems(count);
             setSubtotalPrice(price);
             setCartItems(defaultCart);

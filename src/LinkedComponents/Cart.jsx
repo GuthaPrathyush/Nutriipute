@@ -16,7 +16,7 @@ function Cart() {
                             <div className="cartItemContainer">
                                 <h1 className='cartHeading'>Cart</h1>
                                 {AllProducts.map((item, index) => {
-                                    if(cartItems[item.Name] > 0) {
+                                    if(cartItems[item.product_id] > 0) {
                                         return (
                                             <div key={index} className="cartItem">
                                                 <Link to={`/${item.product_id}`}>
@@ -24,16 +24,16 @@ function Cart() {
                                                 </Link>
                                                 <h2>{item.Name}</h2>
                                                 <div className='quantityContainer'>
-                                                    <i className="fa-solid fa-minus" onClick={() => removeFromCart(item.Name)}></i>
+                                                    <i className="fa-solid fa-minus" onClick={() => removeFromCart(item.product_id)}></i>
                                                     <div>
                                                         {cartItems[item.Name]}
                                                     </div>
-                                                    <i className="fa-solid fa-plus" onClick={() => addToCart(item.Name)}></i>
+                                                    <i className="fa-solid fa-plus" onClick={() => addToCart(item.product_id)}></i>
                                                 </div>
                                                 <div className='subTotalForOneItem'>
                                                     ₹{cartItems[item.Name]*(Number(item.Offer)?Number(item.Offer):Number(item.Price))}
                                                 </div>
-                                                <i className="fa-solid fa-xmark" onClick={() => deleteFromCart(item.Name)}></i>
+                                                <i className="fa-solid fa-xmark" onClick={() => deleteFromCart(item.product_id)}></i>
                                             </div>
                                         );
                                     }

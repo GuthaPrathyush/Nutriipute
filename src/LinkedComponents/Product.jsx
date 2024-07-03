@@ -41,13 +41,25 @@ function Product() {
                     <h1>{product.Name}</h1>
                     <p>{product.Description}</p>
                     <div className="Macro">
-                        <h3>Macro</h3>
-                        <ul>
-                            {Object.entries(product.Macro).map(([key, value]) => 
-                                <li key={key}>{key.charAt(0).toUpperCase() + key.slice(1)}: {value}gms</li>
-                            )}
-                        </ul>
-
+                        <h3>Nutritional Information</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nutrients</th>
+                                    <th>per 100gms</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {Object.entries(toFindProduct.Macro).map(([key, value]) => 
+                                    <tr key={key}>
+                                        <td>{key}</td>
+                                        <td>
+                                            {value} {key === "Energy"? "kcal": "g"}
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
                     </div>
                     <div className="pricingAndBuying">
                         {product.InStock && getPrice()}

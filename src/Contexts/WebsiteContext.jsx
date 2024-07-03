@@ -90,6 +90,7 @@ function WebsiteContextProvider(props) {
                 if (item) {
                     price += defaultCart[product_id] * (Number(item.Offer) || Number(item.Price));
                 }
+                console.log(price);
             }
             setAllProductsMulti(defaultProducts);
             setAllProducts(defaultProducts.flat());

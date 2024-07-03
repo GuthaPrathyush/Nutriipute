@@ -16,7 +16,7 @@ function Menu() {
             <div className="container">
                 {AllProductsMulti.map((item, i) => {
                     return (
-                        <Section key={i} products={item} index={index} length={AllProductsMulti.length} />
+                        <Section key={i} products={item} index={i} length={AllProductsMulti.length} />
                     )
                 })}
                 {/* <div className='menuDomain'>

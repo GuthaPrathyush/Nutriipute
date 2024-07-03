@@ -10,7 +10,7 @@ async function getDefaultCart() {
     }
     else {
         let responseData;
-        await axios.post('https://nutriipute.vercel.app/getDefaultCart', JSON.stringify({token: localStorage.getItem('auth-token')}), {
+        await axios.post('https://nutriipute-backend.vercel.app/getDefaultCart', JSON.stringify({token: localStorage.getItem('auth-token')}), {
             headers: {
                 Accept: 'application/form-data',
                 'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ async function getDefaultAddress() {
     }
     else {
         let responseData;
-        await axios.post('https://nutriipute.vercel.app/getAddress', JSON.stringify({token: localStorage.getItem('auth-token')}), {
+        await axios.post('https://nutriipute-backend.vercel.app/getAddress', JSON.stringify({token: localStorage.getItem('auth-token')}), {
             headers: {
                 Accept: 'application/form-data',
                 'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ async function getDefaultAddress() {
 
 async function getDefaultProducts()  {
     let responseData = null;
-    await axios.post('https://nutriipute.vercel.app/getAllProducts', JSON.stringify({token: "Your auth-token"}), {
+    await axios.post('https://nutriipute-backend.vercel.app/getAllProducts', JSON.stringify({token: "Your auth-token"}), {
             headers: {
                 Accept: 'application/form-data',
                 'Content-Type': 'application/json'
@@ -119,7 +119,7 @@ function WebsiteContextProvider(props) {
         console.log(subtotalPrice);
         if(localStorage.getItem('auth-token')) {
             let responseData;
-            await axios.post('https://nutriipute.vercel.app/addToCart', JSON.stringify({product_id: product_id}), {
+            await axios.post('https://nutriipute-backend.vercel.app/addToCart', JSON.stringify({product_id: product_id}), {
                 headers: {
                     Accept: "application/form-data",
                     'Content-type': 'application/json',
@@ -154,7 +154,7 @@ function WebsiteContextProvider(props) {
         console.log(cartItems);
         if(localStorage.getItem('auth-token')) {
             let responseData;
-            await axios.post('https://nutriipute.vercel.app/removeFromCart', JSON.stringify({product_id: product_id}), {
+            await axios.post('https://nutriipute-backend.vercel.app/removeFromCart', JSON.stringify({product_id: product_id}), {
                 headers: {
                     Accept: "application/form-data",
                     'Content-type': 'application/json',
@@ -180,7 +180,7 @@ function WebsiteContextProvider(props) {
         console.log(`Deleted ${product_id}`);
         if(localStorage.getItem('auth-token')) {
             let responseData;
-            await axios.post('https://nutriipute.vercel.app/deleteFromCart', JSON.stringify({product_id: product_id}), {
+            await axios.post('https://nutriipute-backend.vercel.app/deleteFromCart', JSON.stringify({product_id: product_id}), {
                 headers: {
                     Accept: "application/form-data",
                     'Content-type': 'application/json',

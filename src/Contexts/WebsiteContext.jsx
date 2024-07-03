@@ -180,7 +180,7 @@ function WebsiteContextProvider(props) {
                 }
             }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
             if(responseData.success) {
-                toast.success("deleted from cart successfully");
+                toast.success("Deleted from Cart Successfully");
             }
         }
     }

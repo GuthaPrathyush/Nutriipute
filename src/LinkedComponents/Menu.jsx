@@ -5,12 +5,21 @@ import BrownRiceBowls from '../assets/BrownRiceBowls.js';
 import ProtienStarters from '../assets/ProtienStarters.js';
 import Item from './Item';
 import '../stylesheets/menu.css';
+import { useContext } from 'react';
+import { WebsiteContext } from '../Contexts/WebsiteContext.jsx';
+import Section from './Section.jsx';
 
 function Menu() {
+    const {AllProductsMulti} = useContext(WebsiteContext);
     return (
         <div className="Menu">
             <div className="container">
-                <div className='menuDomain'>
+                {AllProductsMulti.map((item, i) => {
+                    return (
+                        <Section key={i} products={item} index={index} length={AllProductsMulti.length} />
+                    )
+                })}
+                {/* <div className='menuDomain'>
                     <h1>Breakfasts</h1>
                     <div className='menuContainer'>
                         {Breakfast.map((item, i) => {
@@ -44,7 +53,7 @@ function Menu() {
                             return <Link key={i} to={`/${item.Domain}/${item.Name.replace(/ /g, '_')}`}><Item items={item}/></Link>
                         })}
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );

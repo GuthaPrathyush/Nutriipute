@@ -14,7 +14,6 @@ function Product() {
         return (<Error/>);
     }
     const domain = String(product_id.substring(0, index)).replace(/_/g, ' ').toLowerCase();
-    console.log(domain);
     const productSection = AllProductsMulti.find((item) => String(item[0].Section).toLowerCase() === domain);
     if(productSection == null) {
         return (<Error></Error>);

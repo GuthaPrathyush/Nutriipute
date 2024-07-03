@@ -156,9 +156,6 @@ function WebsiteContextProvider(props) {
                     'auth-token': localStorage.getItem('auth-token')
                 }
             }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
-            if(responseData.success) {
-                console.log("Success");
-            }
         }
     }
     async function deleteFromCart(product_id) {
@@ -183,7 +180,7 @@ function WebsiteContextProvider(props) {
                 }
             }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
             if(responseData.success) {
-                console.log("Success");
+                toast.success("deleted from cart successfully");
             }
         }
     }

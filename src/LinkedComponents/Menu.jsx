@@ -1,9 +1,3 @@
-import { Link } from 'react-router-dom'
-import Breakfast from '../assets/Breakfast.js';
-import Salads from '../assets/Salads.js';
-import BrownRiceBowls from '../assets/BrownRiceBowls.js';
-import ProtienStarters from '../assets/ProtienStarters.js';
-import Item from './Item';
 import '../stylesheets/menu.css';
 import { useContext } from 'react';
 import { WebsiteContext } from '../Contexts/WebsiteContext.jsx';

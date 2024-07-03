@@ -26,12 +26,12 @@ function Cart() {
                                                 <div className='quantityContainer'>
                                                     <i className="fa-solid fa-minus" onClick={() => removeFromCart(item.product_id)}></i>
                                                     <div>
-                                                        {cartItems[item.Name]}
+                                                        {cartItems[item.product_id]}
                                                     </div>
                                                     <i className="fa-solid fa-plus" onClick={() => addToCart(item.product_id)}></i>
                                                 </div>
                                                 <div className='subTotalForOneItem'>
-                                                    ₹{cartItems[item.Name]*(Number(item.Offer)?Number(item.Offer):Number(item.Price))}
+                                                    ₹{cartItems[item.product_id]*(Number(item.Offer)?Number(item.Offer):Number(item.Price))}
                                                 </div>
                                                 <i className="fa-solid fa-xmark" onClick={() => deleteFromCart(item.product_id)}></i>
                                             </div>

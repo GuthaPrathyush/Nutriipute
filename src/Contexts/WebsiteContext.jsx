@@ -1,8 +1,4 @@
 import React, { createContext, useEffect, useState } from 'react';
-import Breakfast from '../assets/Breakfast';
-import Salads from '../assets/Salads';
-import BrownRiceBowls from '../assets/BrownRiceBowls';
-import ProtienStarters from '../assets/ProtienStarters';
 import axios from 'axios';
 
 export const WebsiteContext = createContext(null);
@@ -14,7 +10,7 @@ async function getDefaultCart() {
     }
     else {
         let responseData;
-        await axios.post('https://nutriipute-backend.vercel.app/getDefaultCart', JSON.stringify({token: localStorage.getItem('auth-token')}), {
+        await axios.post('https://nutriipute.vercel.app/getDefaultCart', JSON.stringify({token: localStorage.getItem('auth-token')}), {
             headers: {
                 Accept: 'application/form-data',
                 'Content-Type': 'application/json'
@@ -35,7 +31,7 @@ async function getDefaultAddress() {
     }
     else {
         let responseData;
-        await axios.post('https://nutriipute-backend.vercel.app/getAddress', JSON.stringify({token: localStorage.getItem('auth-token')}), {
+        await axios.post('https://nutriipute.vercel.app/getAddress', JSON.stringify({token: localStorage.getItem('auth-token')}), {
             headers: {
                 Accept: 'application/form-data',
                 'Content-Type': 'application/json'
@@ -52,13 +48,14 @@ async function getDefaultAddress() {
 
 async function getDefaultProducts()  {
     let responseData = null;
-    await axios.post('https://nutriipute-backend.vercel.app/getAllProducts', JSON.stringify({token: "Your auth-token"}), {
+    await axios.post('https://nutriipute.vercel.app/getAllProducts', JSON.stringify({token: "Your auth-token"}), {
             headers: {
                 Accept: 'application/form-data',
                 'Content-Type': 'application/json'
             }
         }
     ).then((response) => responseData = response.data.Products).catch((error) => responseData = []);
+    console.log(responseData);
     return responseData;
 }
 
@@ -78,11 +75,11 @@ function WebsiteContextProvider(props) {
             const defaultCart = await getDefaultCart();
             let count = 0;
             let price = 0;
-            for (const itemName in defaultCart) {
-                count += defaultCart[itemName];
-                const item = AllProducts.find(e => e.Name === itemName);
+            for (const product_id in defaultCart) {
+                count += defaultCart[product_id];
+                const item = AllProducts.find(e => e.product_id === product_id);
                 if (item) {
-                    price += defaultCart[itemName] * (Number(item.Offer) || Number(item.Price));
+                    price += defaultCart[product_id] * (Number(item.Offer) || Number(item.Price));
                 }
             }
             setNumberOfCartItems(count);
@@ -104,14 +101,14 @@ function WebsiteContextProvider(props) {
         fetchDefaultAddress();
     }, []);
     console.log(address);
-    async function addToCart(itemName) {
-        console.log(cartItems[itemName]);
+    async function addToCart(product_id) {
+        console.log(cartItems[product_id]);
         setCartItems((cartItemsCopy) => {
-            cartItemsCopy[itemName] = cartItemsCopy[itemName]?cartItemsCopy[itemName]+1: 1;
+            cartItemsCopy[product_id] = cartItemsCopy[product_id]?cartItemsCopy[product_id]+1: 1;
             return cartItemsCopy;
         });
         const item = AllProducts.find((e) => {
-            if(e.Name === itemName) {
+            if(e.product_id === product_id) {
                 return ({...e});
             }
         });
@@ -122,7 +119,7 @@ function WebsiteContextProvider(props) {
         console.log(subtotalPrice);
         if(localStorage.getItem('auth-token')) {
             let responseData;
-            await axios.post('https://nutriipute-backend.vercel.app/addToCart', JSON.stringify({itemName: itemName}), {
+            await axios.post('https://nutriipute.vercel.app/addToCart', JSON.stringify({product_id: product_id}), {
                 headers: {
                     Accept: "application/form-data",
                     'Content-type': 'application/json',
@@ -134,19 +131,22 @@ function WebsiteContextProvider(props) {
             }
         }
     }
-    async function removeFromCart(itemName) {
+    async function removeFromCart(product_id) {
+        if(cartItems[product_id] == 0) {
+            return ;
+        }
         setCartItems((cartItemsCopy) => {
-            cartItemsCopy[itemName] = cartItemsCopy[itemName]-1;
+            cartItemsCopy[product_id] = cartItemsCopy[product_id]-1;
             return cartItemsCopy;
         });
         const item = AllProducts.find((e) => {
-            if(e.Name === itemName) {
+            if(e.product_id === product_id) {
                 return ({...e});
             }
         });
         console.log(item);
-        if(cartItems[itemName] === 0) {
-            delete cartItems[itemName];
+        if(cartItems[product_id] === 0) {
+            delete cartItems[product_id];
         }
         console.log(cartItems);
         setSubtotalPrice(subtotalPriceCopy => subtotalPriceCopy-(Number(item.Offer)?Number(item.Offer):Number(item.Price)));
@@ -154,7 +154,7 @@ function WebsiteContextProvider(props) {
         console.log(cartItems);
         if(localStorage.getItem('auth-token')) {
             let responseData;
-            await axios.post('https://nutriipute-backend.vercel.app/removeFromCart', JSON.stringify({itemName: itemName}), {
+            await axios.post('https://nutriipute.vercel.app/removeFromCart', JSON.stringify({product_id: product_id}), {
                 headers: {
                     Accept: "application/form-data",
                     'Content-type': 'application/json',
@@ -166,21 +166,21 @@ function WebsiteContextProvider(props) {
             }
         }
     }
-    async function deleteFromCart(itemName) {
+    async function deleteFromCart(product_id) {
         const item = AllProducts.find((e) => {
-            if(e.Name === itemName) {
+            if(e.product_id === product_id) {
                 return ({...e});
             }
         });
         console.log(item);
-        setSubtotalPrice(subtotalPrice-cartItems[itemName]*(Number(item.Offer)?Number(item.Offer):Number(item.Price)));
-        setNumberOfCartItems(numberOfCartItems-cartItems[itemName]);
+        setSubtotalPrice(subtotalPrice-cartItems[product_id]*(Number(item.Offer)?Number(item.Offer):Number(item.Price)));
+        setNumberOfCartItems(numberOfCartItems-cartItems[product_id]);
         console.log(numberOfCartItems);
-        delete cartItems[itemName];
-        console.log(`Deleted ${itemName}`);
+        delete cartItems[product_id];
+        console.log(`Deleted ${product_id}`);
         if(localStorage.getItem('auth-token')) {
             let responseData;
-            await axios.post('https://nutriipute-backend.vercel.app/deleteFromCart', JSON.stringify({itemName: itemName}), {
+            await axios.post('https://nutriipute.vercel.app/deleteFromCart', JSON.stringify({product_id: product_id}), {
                 headers: {
                     Accept: "application/form-data",
                     'Content-type': 'application/json',

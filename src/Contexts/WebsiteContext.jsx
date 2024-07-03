@@ -72,35 +72,33 @@ function WebsiteContextProvider(props) {
 
     useEffect(() => {
         async function fetchProducts() {
-            const defaultProducts = await getDefaultProducts();
-            setAllProductsMulti(defaultProducts);
-            setAllProducts(defaultProducts.flat());
+            
         }
         fetchProducts();
     });
     useEffect(() => {
-        async function fetchDefaultCart() {
+        async function fetchDefaultDetails() {
             const defaultCart = await getDefaultCart();
+            const defaultProducts = await getDefaultProducts();
+            const defaultAddress = await getDefaultAddress();
             let count = 0;
             let price = 0;
             for (const product_id in defaultCart) {
                 count += defaultCart[product_id];
-                const item = AllProducts.find(e => e.product_id === product_id);
+                const item = defaultProducts.find(e => e.product_id === product_id);
                 if (item) {
                     price += defaultCart[product_id] * (Number(item.Offer) || Number(item.Price));
                 }
             }
+            setAllProductsMulti(defaultProducts);
+            setAllProducts(defaultProducts.flat());
             setNumberOfCartItems(count);
             setSubtotalPrice(price);
             setCartItems(defaultCart);
-        }
-        async function fetchDefaultAddress() {
-            const defaultAddress = await getDefaultAddress();
             setAddress(defaultAddress);
             setLoaded(true);
         }
-        fetchDefaultCart();
-        fetchDefaultAddress();
+        fetchDefaultDetails();
     }, []);
     async function addToCart(product_id) {
         setCartItems((cartItemsCopy) => {

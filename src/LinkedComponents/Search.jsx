@@ -10,40 +10,42 @@ function Search() {
     searchText = String(searchText).toLowerCase();
     searchText = searchText.split('_');
     let itemsPresent = false;
-    return (
-        <div className="Search">
-            <div className="container">
-                <div className="searchedProducts">
-                    {AllProducts.map((item, index) => {
-                        for(let searchItem of searchText) {
-                            if((item.Name).toLowerCase().indexOf(searchItem) !== -1) {
-                                itemsPresent = true;
-                                return (
-                                    <ItemHorizontal key={index} items={item}/>
-                                );
+    if(AllProducts.length > 0) { 
+        return (
+            <div className="Search">
+                <div className="container">
+                    <div className="searchedProducts">
+                        {AllProducts.map((item, index) => {
+                            for(let searchItem of searchText) {
+                                if((item.Name).toLowerCase().indexOf(searchItem) !== -1) {
+                                    itemsPresent = true;
+                                    return (
+                                        <ItemHorizontal key={index} items={item}/>
+                                    );
+                                }
+                                else if((item.Domain).toLowerCase().indexOf(searchItem) !== -1) {
+                                    itemsPresent = true;
+                                    return (
+                                        <ItemHorizontal key={index} items={item}/>
+                                    );
+                                }
                             }
-                            else if((item.Domain).toLowerCase().indexOf(searchItem) !== -1) {
-                                itemsPresent = true;
-                                return (
-                                    <ItemHorizontal key={index} items={item}/>
-                                );
-                            }
-                        }
 
-                    })}
-                    {(() => {
-                        if(!itemsPresent) {
-                            return (
-                                <Link className='noProducts' to='/menu'>
-                                <div><h2>No Products :(</h2><p>click to go to Menu</p></div>
-                                </Link>
-                            );
-                        }
-                    })()}
+                        })}
+                        {(() => {
+                            if(!itemsPresent) {
+                                return (
+                                    <Link className='noProducts' to='/menu'>
+                                    <div><h2>No Products :(</h2><p>click to go to Menu</p></div>
+                                    </Link>
+                                );
+                            }
+                        })()}
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }   
 }
 
 export default Search;

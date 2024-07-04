@@ -1,16 +1,22 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { WebsiteContext } from '../Contexts/WebsiteContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import '../stylesheets/search.css';
 import ItemHorizontal from './ItemHorizontal';
 
 function Search() {
     let {searchText} = useParams();
+    const navigate = useNavigate();
     const {AllProducts} = useContext(WebsiteContext);
     searchText = String(searchText).toLowerCase();
     searchText = searchText.split('_');
     let itemsPresent = false;
-    if(AllProducts.length > 0) { 
+    useEffect(() => {
+        if(AllProducts.length === 0) {
+            navigate('/');
+        }
+    });
+    if(AllProducts.length !== 0) {
         return (
             <div className="Search">
                 <div className="container">
@@ -23,7 +29,7 @@ function Search() {
                                         <ItemHorizontal key={index} items={item}/>
                                     );
                                 }
-                                else if(String(item.Domain).toLowerCase().indexOf(searchItem) !== -1) {
+                                else if(String(item.Section).toLowerCase().indexOf(searchItem) !== -1) {
                                     itemsPresent = true;
                                     return (
                                         <ItemHorizontal key={index} items={item}/>
@@ -45,7 +51,7 @@ function Search() {
                 </div>
             </div>
         );
-    }   
+    }
 }
 
 export default Search;

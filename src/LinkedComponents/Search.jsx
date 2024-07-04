@@ -17,13 +17,13 @@ function Search() {
                     <div className="searchedProducts">
                         {AllProducts.map((item, index) => {
                             for(let searchItem of searchText) {
-                                if((item.Name).toLowerCase().indexOf(searchItem) !== -1) {
+                                if(String(item.Name).toLowerCase().indexOf(searchItem) !== -1) {
                                     itemsPresent = true;
                                     return (
                                         <ItemHorizontal key={index} items={item}/>
                                     );
                                 }
-                                else if((item.Domain).toLowerCase().indexOf(searchItem) !== -1) {
+                                else if(String(item.Domain).toLowerCase().indexOf(searchItem) !== -1) {
                                     itemsPresent = true;
                                     return (
                                         <ItemHorizontal key={index} items={item}/>

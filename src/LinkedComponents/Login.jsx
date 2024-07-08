@@ -30,26 +30,39 @@ function Login() {
         }
     }
     const LoginUser = async () => {
+        const emailF = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const passF = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W\_])[A-Za-z\d\W\_]+$/;
         loginButton.current.disabled = true;
-        const loginPromise = axios.post('https://nutriipute-backend.vercel.app/login',JSON.stringify({Email: email.toLowerCase(), Password: password}), {
-            headers: {
-                Accept: 'application/form-data',
-                'Content-Type': 'application/json'
-            }
-        });
-        toast.promise(loginPromise, {
-            loading: "Logging in...",
-            success: response => {
-                localStorage.setItem('auth-token', response.data.token);
-                loginButton.current.disabled = false;
-                setTimeout(() => window.location.replace("/"), 1500);
-                return "Login Successful!";
-            },
-            error: error => {
-                loginButton.current.disabled = false;
-                return error.response.data.errors;
-            }
-        });
+        if(email.trim() === '' || password.trim() === '') {
+            toast.error('Empty Fields');
+        }
+        else if(!emailF.test(email)) {
+            toast.error('Invalid Email address')
+        }
+        else if(!passF.test(password)){
+            toast.error('Invalid Password!');
+        }
+        else {
+            const loginPromise = axios.post('https://nutriipute-backend.vercel.app/login',JSON.stringify({Email: email.toLowerCase(), Password: password}), {
+                headers: {
+                    Accept: 'application/form-data',
+                    'Content-Type': 'application/json'
+                }
+            });
+            toast.promise(loginPromise, {
+                loading: "Logging in...",
+                success: response => {
+                    localStorage.setItem('auth-token', response.data.token);
+                    loginButton.current.disabled = false;
+                    setTimeout(() => window.location.replace("/"), 1500);
+                    return "Login Successful!";
+                },
+                error: error => {
+                    loginButton.current.disabled = false;
+                    return error.response.data.errors;
+                }
+            });
+        }
     }
     if(localStorage.getItem('auth-token')) {
         window.location.replace('/Profile');

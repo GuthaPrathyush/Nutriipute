@@ -63,6 +63,7 @@ function Login() {
                 }
             });
         }
+        loginButton.current.disabled = false;
     }
     if(localStorage.getItem('auth-token')) {
         window.location.replace('/Profile');

@@ -2,6 +2,8 @@
     min-height: calc(100vh - 69px);
     > .container {
         > .paymentOuter {
+            background-color: #dcdcdc;
+            border-radius: 12px;
             width: 100%;
             display: flex;
             flex-direction: column;

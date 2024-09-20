@@ -6,4 +6,4 @@ Developers:
 
 ### Link to the website
 
-[click here](nutriipute.vercel.app) to visit the website
+[click here](https://nutriipute.vercel.app) to visit the website

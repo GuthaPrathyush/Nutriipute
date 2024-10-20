@@ -3,11 +3,12 @@ import { WebsiteContext } from "../Contexts/WebsiteContext";
 import '../stylesheets/checkout.css';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import {toast} from 'react-hot-toast';
 
 axios.defaults.withCredentials = true;
 
 function Checkout() {
-    const { address, setIndexToModify, setAddress } = useContext(WebsiteContext);
+    const { address, setIndexToModify, setAddress, cartItems } = useContext(WebsiteContext);
     const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
     const navigate = useNavigate();
 
@@ -18,14 +19,14 @@ function Checkout() {
 
     const handleDelClick = async (index) => {
         let responseData;
-        await axios.post('https://nutriipute-backend.vercel.app/delAddress', JSON.stringify({index: index}), {
+        await axios.post('https://nutriipute-backend.vercel.app/delAddress', JSON.stringify({ index: index }), {
             headers: {
                 Accept: 'application/form-data',
                 'Content-Type': 'application/json',
                 'auth-token': localStorage.getItem('auth-token')
             }
         }).then(response => responseData = response.data).catch(error => responseData = error.response.data);
-        if(responseData.success) {
+        if (responseData.success) {
             console.log("successfully deleted!");
             setAddress(address.filter((_, i) => i != index));
             navigate('/Checkout');
@@ -35,6 +36,23 @@ function Checkout() {
         }
     }
 
+    const processOrder = async () => {
+        // const orderStatus = axios.post('https://nutriipute-backend.vercel.app/order',JSON.stringify({cartItems, DeliveryAddress: address[selectedAddressIndex]}), {
+        //     headers: {
+        //         Accept: 'application/form-data',
+        //         'Content-Type': 'application/json',
+        //         'auth-token': localStorage.getItem('auth-token')
+        //     }
+        // });
+        // toast.promise(processOrder, {
+        //     loading: "Order is being placed...",
+        //     success: response => {
+                
+        //     },
+
+        // });
+    }
+
     if (!localStorage.getItem('auth-token')) {
         window.location.replace('/login');
     } else {
@@ -42,30 +60,30 @@ function Checkout() {
             <div className="Checkout">
                 <div className="container">
                     <div className="addAddressOuter">
-                        <h1 className="heading" style={address.length>0?{color: "black"}: {color: "hsl(120, 70%, 34%)"}}>Deliver to</h1>
-                        <div className="addressContainer" style={address.length>0?{marginTop: "20px"}: null}>
+                        <h1 className="heading" style={address.length > 0 ? { color: "black" } : { color: "hsl(120, 70%, 34%)" }}>Deliver to</h1>
+                        <div className="addressContainer" style={address.length > 0 ? { marginTop: "20px" } : null}>
                             {address.map((item, index) => {
                                 return (
                                     <div
                                         className={`Address ${selectedAddressIndex === index ? 'selected' : ''}`}
                                         onClick={() => setSelectedAddressIndex(index)}
                                         key={index}>
-                                            <h4>{item.Name}</h4>
-                                            <p className="num">{item.Phone}</p>
-                                            <p className="add">{item.Door}, {item.Street}{item.Locality?`, ${item.Locality}, `: ","} {item.City} - {item.Pincode}</p>
-                                            <button className="editAdd" onClick={() => handleEditClick(index)}>Edit Address</button>
-                                            <button className="delAdd" onClick={() => handleDelClick(index)}>Delete Address</button>
+                                        <h4>{item.Name}</h4>
+                                        <p className="num">{item.Phone}</p>
+                                        <p className="add">{item.Door}, {item.Street}{item.Locality ? `, ${item.Locality}, ` : ","} {item.City} - {item.Pincode}</p>
+                                        <button className="editAdd" onClick={() => handleEditClick(index)}>Edit Address</button>
+                                        <button className="delAdd" onClick={() => handleDelClick(index)}>Delete Address</button>
                                         <input
-                                        type="radio"
-                                        name="address"
-                                        checked={selectedAddressIndex === index}
-                                        readOnly
+                                            type="radio"
+                                            name="address"
+                                            checked={selectedAddressIndex === index}
+                                            readOnly
                                         />
                                     </div>
                                 );
                             })}
                         </div>
-                        {address.length === 0? <h3 className="addAddressReq">Please add Addresses</h3>: null}
+                        {address.length === 0 ? <h3 className="addAddressReq">Please add Addresses</h3> : null}
                         {address.length >= 3 ? null : <Link to='/addAddress' onClick={() => scrollTo(0, 0)}>Add more</Link>}
                     </div>
                     <div className="paymentOuter">
@@ -77,9 +95,9 @@ function Checkout() {
                             </select>
                         </div>
                     </div>
-                    {address.length > 0? <div className="proceedToPaymentOuter">
+                    {address.length > 0 ? <div className="proceedToPaymentOuter">
                         <Link selectedAddress={selectedAddressIndex}>Proceed to Payment</Link>
-                    </div>: null}
+                    </div> : null}
                 </div>
             </div>
         );
